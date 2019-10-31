@@ -90,14 +90,14 @@
   </head>
 
   <body>
-
     <div id="fixed-frame" class="frame">
       <div class="pointer-punch"></div>
       <div id="camera-frame">
         <div id="masthead">
           <div id="play"><span class="icon-play big"><span></span></span></div>
           <h1>photography<span>,</span> science <span>&amp;</span> musings</h1>
-          <h2><a href="http://vidyasagar.space/" class="reverse"> Vidyasagar <span class="bubble"></span></span></a>
+          <h2><a href="http://vidyasagar.space/" class="reverse"> Vidyasagar, Ph.D. <span
+                class="bubble"></span></span></a>
           </h2>
         </div>
         <div id="arrow"><span class="icon-arrow big"><span></span><span></span></span></div>
@@ -112,45 +112,16 @@
 
         <div class="g8 i2">
 
-          <h1>My First Post</h1>
-          <h2>Amet consectetur adipiscing elit</h2>
+          <h1>About</h1>
+          <!-- <h2>Amet consectetur adipiscing elit</h2> -->
 
-          <p>Vivamus eu dolor sit amet eros eleifend auctor vitae ac magna. Sed sed eros risus. Etiam id risus quis
-            libero faucibus hendrerit in interdum ipsum. Interdum et malesuada fames ac ante ipsum primis in faucibus.
-            Nunc malesuada ac nulla eget suscipit. Aliquam egestas dui eget iaculis tincidunt. Sed tincidunt velit
-            velit, ac pellentesque tortor scelerisque eu. Fusce ac lobortis purus, sed lacinia est. Aliquam vulputate
-            ligula nec tortor fringilla, ac commodo lacus egestas. Nunc at imperdiet elit. Quisque quis metus sed lacus
-            laoreet pellentesque. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-            Nam eu risus mi. Proin sem enim, rutrum ac lacus eget, consectetur ultricies orci. Duis nec velit non dolor
-            sollicitudin consectetur sed a ante. Quisque eget mollis augue.</p>
-
-          <p>Nullam blandit sed urna id mollis. Praesent rhoncus neque ut viverra hendrerit. Integer vel interdum nisl.
-            Donec porta, velit ac laoreet pulvinar, nibh lectus sodales mauris, at rutrum augue mauris eget nisl.
-            Interdum et malesuada fames ac ante ipsum primis in faucibus. Integer imperdiet mollis nulla. Nulla
-            facilisis, est non varius dapibus, lectus erat congue justo, ac aliquam ligula lectus eu mi. Integer ac
-            ultricies nulla. Ut luctus, lectus sed interdum condimentum, tellus neque iaculis tortor, non aliquam justo
-            risus sed dui. Nam eget odio diam. Suspendisse urna erat, accumsan in cursus non, pretium a neque. Integer
-            non aliquam erat, sit amet facilisis dui.</p>
-
-          <p>In hac habitasse platea dictumst. Suspendisse tempor orci leo, ac varius elit tempus id. Vestibulum
-            tincidunt faucibus lorem vitae ullamcorper. Maecenas eu velit ante. Suspendisse potenti. Praesent a mi sit
-            amet ante blandit elementum. In mattis ligula non nisi varius suscipit. Mauris tincidunt, est a egestas
-            adipiscing, ipsum diam fermentum tellus, eu mollis diam sapien vitae nunc. Quisque rhoncus urna in leo
-            fermentum, non varius libero hendrerit. Maecenas sit amet ultrices eros, nec egestas orci. Etiam aliquam
-            libero sit amet tortor aliquam sodales. Duis in consequat elit.</p>
-
-          <p>Nunc vulputate aliquam enim, eu suscipit purus pellentesque eu. Quisque sit amet varius nulla. Maecenas
-            dapibus at lectus id convallis. Nullam dapibus ligula et nulla malesuada, facilisis tincidunt erat feugiat.
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla viverra lectus eget dui accumsan, id eleifend
-            augue scelerisque. Morbi et interdum lacus. Cras vel lobortis neque. Sed malesuada venenatis sapien, vel
-            pharetra justo lacinia at. Vestibulum nec consequat purus, nec faucibus massa. Nullam ac suscipit metus.
-            Vestibulum viverra nunc id sollicitudin congue.</p>
-
-          <p>Etiam non dui nisi. Suspendisse ornare orci quam, sed faucibus quam dapibus ac. Nam vel sapien id lorem
-            tempus molestie eget quis sapien. Aenean malesuada dignissim laoreet. Sed eu condimentum ipsum. Cras nec
-            luctus ipsum. Sed facilisis augue ac dui interdum pellentesque. Cras at sem id tortor consequat viverra.
-            Praesent cursus blandit felis, a condimentum nulla tincidunt quis. Donec rhoncus ac justo ac condimentum.
-          </p>
+          <p>Welcome, and at risk of sounding clich&eacute;, thank you for visiting; as one might infer, this webpage is
+            yet a work in
+            progress. With an introduction in order, my name is Vidyasagar and I am an avid traveller, photographer and
+            scientist. My vision is to
+            share
+            my experiences, thoughts, knowledge and skills through this repository - in hopes it may benefit a wide
+            audience.</p>
 
         </div>
 
@@ -158,6 +129,41 @@
 
       <!-- End Content -->
 
+    </div>
+
+    <script type="text/javascript" src="https://unpkg.com/@babel/polyfill@7.0.0/dist/polyfill.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/vtk.js"></script>
+    <script type="text/javascript">
+      // --------------------------------------------------------------------------
+      // Example code
+      // --------------------------------------------------------------------------
+      var fullScreenRenderer = vtk.Rendering.Misc.vtkFullScreenRenderWindow.newInstance();
+      var actor = vtk.Rendering.Core.vtkActor.newInstance();
+      var mapper = vtk.Rendering.Core.vtkMapper.newInstance();
+      var cone = vtk.Filters.Sources.vtkConeSource.newInstance();
+
+      actor.setMapper(mapper);
+      mapper.setInputConnection(cone.getOutputPort());
+
+      var renderer = fullScreenRenderer.getRenderer();
+      renderer.addActor(actor);
+      renderer.resetCamera();
+
+      var renderWindow = fullScreenRenderer.getRenderWindow();
+      renderWindow.render();
+    </script>
+    <div id="fixed-frame" class="frame">
+      <div class="pointer-punch"></div>
+      <div id="camera-frame">
+        <div id="masthead">
+          <div id="play"><span class="icon-play big"><span></span></span></div>
+          <h1>photography<span>,</span> science <span>&amp;</span> musings</h1>
+          <h2><a href="http://vidyasagar.space/" class="reverse"> Vidyasagar, Ph.D. <span
+                class="bubble"></span></span></a>
+          </h2>
+        </div>
+        <div id="arrow"><span class="icon-arrow big"><span></span><span></span></span></div>
+      </div>
     </div>
 
   </body>
