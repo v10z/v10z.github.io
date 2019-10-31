@@ -4,8 +4,8 @@ Acko.TrackData = [
   {
     n: 8,
     power: .4,
-    width: 23,
-    height: 12,
+    width: 1, /* 23, */
+    height: 1,/* 12, */
     relative: _v(-370, 0, 0),
     points: [
       [_v(-800, 120, 200), null, 0],
@@ -29,7 +29,7 @@ Acko.TrackData = [
 
     travel: 953,
     length: 1176,
-    arrow: 32,
+    /*     arrow: 32, */
     aspect: .96,
     smooth: 4,
     up: _v(0, 2.4, 1),
@@ -46,8 +46,10 @@ Acko.TrackData = [
   {
     n: 8,
     power: .2,
-    width: 25,
-    height: 10,
+    width: 1,
+    height: 1,
+    /*     width: 25,
+        height: 10, */
     relative: _v(-370, 0, 0),
     points: [
       [_v(-800, 120, 200), null, 0],
@@ -73,7 +75,7 @@ Acko.TrackData = [
     speed: 0,
     length: 1176.6,
     shift: 5.716,
-    arrow: 37,
+    /*    arrow: 37, */
     aspect: 1,
     smooth: 4,
     up: _v(0, 2.4, 1),
@@ -90,8 +92,10 @@ Acko.TrackData = [
   {
     n: 8,
     power: .4,
+    width: 1,
+    height: 1,/*
     width: 23,
-    height: 12,
+    height: 12, */
     relative: _v(-170, 0, 0),
     points: [
       [_v(-800, 310, -200), null, 0],
@@ -111,7 +115,7 @@ Acko.TrackData = [
 
     travel: 713,
     length: 1266,
-    arrow: 32,
+    /*    arrow: 32, */
     aspect: .96,
     smooth: 4,
     up: _v(0, 1, 2.3),
@@ -128,8 +132,10 @@ Acko.TrackData = [
   {
     n: 8,
     power: .2,
+    width: 1,
+    height: 1,/*
     width: 25,
-    height: 10,
+    height: 10, */
     relative: _v(-170, 0, 0),
     points: [
       [_v(-800, 310, -200), null, 0],
@@ -151,7 +157,7 @@ Acko.TrackData = [
     speed: 0,
     length: 1266.6,
     shift: 5.716,
-    arrow: 37,
+    /*   arrow: 37, */
     aspect: 1,
     smooth: 4,
     up: _v(0, 1, 2.3),
@@ -168,8 +174,10 @@ Acko.TrackData = [
   {
     n: 8,
     power: .4,
-    width: 23,
-    height: 12,
+    width: 1,
+    height: 1,/*
+    width: 1,
+    height: 12, */
     relative: _v(10, 0, 0),
     points: [
       [_v(20, 800, -310), null, 0],
@@ -198,16 +206,16 @@ Acko.TrackData = [
 
     travel: 343,
     length: 2181,
-    arrow: 32,
+    /*     arrow: 32, */
     aspect: .96,
     smooth: 4,
     up: _v(.45, 0, 1),
     detail: 8,
     color: Acko.Palette.platinum[2],
-    distance: 3300*.45,
+    distance: 3300 * .45,
     castAO: .85,
     receiveAO: .85,
-    speed: 600*.45,
+    speed: 600 * .45,
     simplify: false,
     edge: 1,
   },
@@ -215,8 +223,10 @@ Acko.TrackData = [
   {
     n: 8,
     power: .2,
+    width: 1,
+    height: 1,/*
     width: 25,
-    height: 10,
+    height: 10, */
     relative: _v(10, 0, 0),
     points: [
       [_v(20, 800, -310), null, 0],
@@ -246,14 +256,14 @@ Acko.TrackData = [
     travel: 340,
     length: 2181.6,
     shift: 5.716,
-    arrow: 37,
+    /*  arrow: 37, */
     aspect: 1,
     smooth: 4,
     up: _v(.45, 0, 1),
     detail: 8,
     color: Acko.Palette.red[2],
-    distance: 3300*.45,
-    speed: 600*.45,
+    distance: 3300 * .45,
+    speed: 600 * .45,
     castAO: false,
     simplify: false,
     truncate: 30,
@@ -263,8 +273,10 @@ Acko.TrackData = [
   {
     n: 8,
     power: .2,
+    width: 1,
+    height: 1,/*
     width: 15,
-    height: 20.5,
+    height: 20.5, */
     relative: _v(10, 0, 0),
     points: [
       [_v(-550, 600, -400), null, 0],
@@ -285,7 +297,7 @@ Acko.TrackData = [
       [_v(1000, 20, 260), null, 160, 16],
       [_v(1000, 250, 260), null, 0],
       [_v(1000, 550, 260), null, 0],
-     ],
+    ],
 
     travel: -2102,
     length: 6498,
@@ -305,8 +317,10 @@ Acko.TrackData = [
   {
     n: 8,
     power: .2,
+    width: 1,
+    height: 1,/*
     width: 35,
-    height: 15,
+    height: 15, */
     relative: _v(10, 0, 0),
     points: [
       [_v(-550, 600, -400), null, 0],
@@ -348,8 +362,10 @@ Acko.TrackData = [
   {
     n: 8,
     power: .2,
+    width: 1,
+    height: 1,/*
     width: 30,
-    height: 5,
+    height: 5, */
     relative: _v(0, 0, 0),
     points: [
       [_v(-350, 775, -440), null, 0],
@@ -391,8 +407,10 @@ Acko.TrackData = [
   {
     n: 8,
     power: .2,
+    width: 1,
+    height: 1,/*
     width: 30,
-    height: 5,
+    height: 5, */
     relative: _v(100, 0, 0),
     points: [
       [_v(-1100, 100, -240), null, 0],
@@ -441,8 +459,10 @@ Acko.TrackData = [
   {
     n: 8,
     power: .2,
+    width: 1,
+    height: 1,/*
     width: 30,
-    height: 5,
+    height: 5, */
     relative: _v(100, 0, 0),
     points: [
       [_v(-1200, 145, -145), null, 0],
@@ -484,8 +504,10 @@ Acko.TrackData = [
   {
     n: 8,
     power: .2,
+    width: 1,
+    height: 1,/*
     width: 30,
-    height: 5,
+    height: 5, */
     relative: _v(100, 0, 0),
     points: [
       [_v(-1200, 180, -230), null, 0],
@@ -524,8 +546,10 @@ Acko.TrackData = [
   {
     n: 8,
     power: .2,
+    width: 1,
+    height: 1,/*
     width: 30,
-    height: 5,
+    height: 5, */
     relative: _v(100, 0, 0),
     points: [
       [_v(-1200, 60, -50), null, 0],
@@ -557,12 +581,14 @@ Acko.TrackData = [
     color: Acko.Palette.red[2],
   },
 
-  // Platinum ribbon 
+  // Platinum ribbon
   {
     n: 8,
     power: .2,
+    width: 1,
+    height: 1,/*
     width: 30,
-    height: 5,
+    height: 5, */
     relative: _v(100, 0, 0),
     points: [
       [_v(-798, 600, -420), null, 0],
@@ -607,8 +633,10 @@ Acko.TrackData = [
   {
     n: 16,
     power: .5,
+    width: 1,
+    height: 1,/*
     width: 80,
-    height: 60,
+    height: 60, */
     relative: _v(100, -200, 0),
     points: [
       [_v(-2800, 300, 80), null, 0],
@@ -633,8 +661,10 @@ Acko.TrackData = [
   {
     n: 16,
     power: .5,
+    width: 1,
+    height: 1,/*
     width: 40,
-    height: 50,
+    height: 50, */
     relative: _v(100, -200, 0),
     points: [
       [_v(-2800, 450, 80), null, 0],
