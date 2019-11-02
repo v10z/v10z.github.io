@@ -1,12 +1,12 @@
-Acko.Effect.Debug = function () {
-  Acko.Effect.call(this);
+Streams.Effect.Debug = function () {
+  Streams.Effect.call(this);
 
   this.order = Infinity;
   this.display = null;
   this.last = 0;
 }
 
-Acko.Effect.Debug.prototype = _.extend(new Acko.Effect(), {
+Streams.Effect.Debug.prototype = _.extend(new Streams.Effect(), {
 
   build: function (exports) {
     return;
@@ -48,4 +48,4 @@ Acko.Effect.Debug.prototype = _.extend(new Acko.Effect(), {
 
 });
 
-Acko.Effects.push(new Acko.Effect.Debug());
+Streams.Effects.push(new Streams.Effect.Debug());

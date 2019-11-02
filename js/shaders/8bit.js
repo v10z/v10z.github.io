@@ -1,4 +1,4 @@
-Acko.EightBitShader = {
+Streams.EightBitShader = {
 
   uniforms: {
 

@@ -1,11 +1,11 @@
-Acko.Effect.Palette = function () {
-  Acko.Effect.call(this);
+Streams.Effect.Palette = function () {
+  Streams.Effect.call(this);
 
   this.order = 0;
   this.group = null;
 }
 
-Acko.Effect.Palette.prototype = _.extend(new Acko.Effect(), {
+Streams.Effect.Palette.prototype = _.extend(new Streams.Effect(), {
 
   build: function (exports) {
     var scene = exports.scene;
@@ -14,8 +14,8 @@ Acko.Effect.Palette.prototype = _.extend(new Acko.Effect(), {
     scene.add(group);
 
     var colors = [];
-    for (i in Acko.Palette) {
-      colors = colors.concat(Acko.Palette[i]);
+    for (i in Streams.Palette) {
+      colors = colors.concat(Streams.Palette[i]);
     }
 
     var geometry = new THREE.CubeGeometry(1, 1, 1);
@@ -58,4 +58,4 @@ Acko.Effect.Palette.prototype = _.extend(new Acko.Effect(), {
 
 });
 
-Acko.Effects.push(new Acko.Effect.Palette());
+Streams.Effects.push(new Streams.Effect.Palette());

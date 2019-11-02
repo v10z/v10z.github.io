@@ -1,9 +1,9 @@
-Acko.Effect = function () {
+Streams.Effect = function () {
   this.order = 0;
   this.renderer = 'webgl';
 }
 
-Acko.Effect.prototype = {
+Streams.Effect.prototype = {
 
   build: function (exports) {
   },
@@ -19,4 +19,4 @@ Acko.Effect.prototype = {
 
 }
 
-Acko.Effects = [];
+Streams.Effects = [];

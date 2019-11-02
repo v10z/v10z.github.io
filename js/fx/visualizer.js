@@ -1,5 +1,5 @@
-Acko.Effect.Visualizer = function () {
-  Acko.Effect.call(this);
+Streams.Effect.Visualizer = function () {
+  Streams.Effect.call(this);
 
   this.order = -5;
   this.display = null;
@@ -34,7 +34,7 @@ Acko.Effect.Visualizer = function () {
   this.slerpB = 0;
 }
 
-Acko.Effect.Visualizer.prototype = _.extend(new Acko.Effect(), {
+Streams.Effect.Visualizer.prototype = _.extend(new Streams.Effect(), {
 
   build: function (exports) {
     exports.visualizer = this;
@@ -48,33 +48,8 @@ Acko.Effect.Visualizer.prototype = _.extend(new Acko.Effect(), {
 
     this.masthead.showArrow = 0;
 
-    this.volume = 1;
     this.playing = true;
     this.startedAt = null;
-
-    try {
-      if (this.audio) {
-        this.audio.pause();
-        this.audio.currentTime = 0;
-        this.audio.play();
-      }
-      else {
-        this.injectAudio();
-
-//        throw "no analyzer";
-        this.analyzer = new ThreeAudio.Source(2048, this.audio);
-      }
-
-    } catch (e) {
-
-      growl({
-        type: 'info',
-        text: '<strong>Web Audio API</strong> support is required for music response.',
-      });
-
-      this.analyzer = null;
-    }
-
   },
 
   stop: function () {
@@ -87,7 +62,7 @@ Acko.Effect.Visualizer.prototype = _.extend(new Acko.Effect(), {
         this.audio.currentTime = 0;
         this.audio.pause();
       }
-      catch (e) {};
+      catch (e) { };
     }
     this.cameraController.lock(0);
     this.volume = 0;
@@ -140,7 +115,7 @@ Acko.Effect.Visualizer.prototype = _.extend(new Acko.Effect(), {
     var end = 422;
 
     // Volume fade
-    var target = this.volume * Math.min(1, Math.max(0, Math.exp((-exports.scroll.y / exports.pageStart)*4.0 + .3)));
+    var target = this.volume * Math.min(1, Math.max(0, Math.exp((-exports.scroll.y / exports.pageStart) * 4.0 + .3)));
 
     // Force volume up for demonstration
     if (this.quietFrames < 0) {
@@ -148,12 +123,12 @@ Acko.Effect.Visualizer.prototype = _.extend(new Acko.Effect(), {
     }
 
     var fade = Math.max(0, Math.min(1, (time - this.skip) / this.fade))
-             * Math.max(0, Math.min(1, (end - time) / this.fade));
+      * Math.max(0, Math.min(1, (end - time) / this.fade));
     this.level = this.level + (target - this.level) * .05;
     if (this.audio) {
       try {
-        this.audio.volume = this.level * fade * Acko.globalVolume;
-      } catch (e) {};
+        this.audio.volume = this.level * fade * Streams.globalVolume;
+      } catch (e) { };
     }
 
     // Get audio levels
@@ -167,10 +142,10 @@ Acko.Effect.Visualizer.prototype = _.extend(new Acko.Effect(), {
     if (!levels) {
       levels = this.fakelevels;
       var tt = time / 131.9;
-      var intensity = Math.min(1,tt);
+      var intensity = Math.min(1, tt);
       for (var i = 0; i < 1024; ++i) {
-        var displace = Math.sin(i + tt * .3112 + Math.cos(tt *.735)) + Math.sin(i + tt * .498 + Math.cos(tt *.261));
-        levels[i] = Math.min(255, Math.max(0, levels[i]||0)*.98 + displace*(1.5+intensity));
+        var displace = Math.sin(i + tt * .3112 + Math.cos(tt * .735)) + Math.sin(i + tt * .498 + Math.cos(tt * .261));
+        levels[i] = Math.min(255, Math.max(0, levels[i] || 0) * .98 + displace * (1.5 + intensity));
       }
     }
 
@@ -193,26 +168,26 @@ Acko.Effect.Visualizer.prototype = _.extend(new Acko.Effect(), {
     var wild = Math.max(0, Math.min(1, (time - trans) / 2));
 
     // Begin turning
-    var trans2 = 104.5-2;
+    var trans2 = 104.5 - 2;
     var turn = Math.max(0, (time - trans2) / 15);
-    turn = (turn < .5 ? turn*turn : turn-.25);
+    turn = (turn < .5 ? turn * turn : turn - .25);
 
     // Camera 'path'
-    tg.rotation.x = (Math.sqrt(2 + turn*turn)/2 - Math.sqrt(2)/2)*3.66 + Math.sin(turn * .133 + .25 * Math.sin(turn*.471));
-    tg.rotation.y = (Math.sqrt(turn+1)-1 + Math.sin(turn * .165 + .5 * Math.sin(turn*1.411)))*1.74;
+    tg.rotation.x = (Math.sqrt(2 + turn * turn) / 2 - Math.sqrt(2) / 2) * 3.66 + Math.sin(turn * .133 + .25 * Math.sin(turn * .471));
+    tg.rotation.y = (Math.sqrt(turn + 1) - 1 + Math.sin(turn * .165 + .5 * Math.sin(turn * 1.411))) * 1.74;
     tg.rotation.z = turn * .21;
 
     // Collision fix
     var mid = 134.9;
     var range = 20;
-    var lerp = .5+.5*Math.cos(Math.max(-π, Math.min(π, (time - mid)*π/range)));
+    var lerp = .5 + .5 * Math.cos(Math.max(-π, Math.min(π, (time - mid) * π / range)));
     tg.rotation.y += lerp * .2;
 
     // Direction change
     var trans8 = 365;
     var change = Math.min(1, Math.max(0, (time - trans8) / 60));
-    tg.rotation.x += (.5-.5*Math.cos(change*π)) * π * .3;
-    tg.rotation.z += (.5-.5*Math.cos(change*π)) * π * .2;
+    tg.rotation.x += (.5 - .5 * Math.cos(change * π)) * π * .3;
+    tg.rotation.z += (.5 - .5 * Math.cos(change * π)) * π * .2;
 
 
     // Dispersion phases
@@ -246,8 +221,8 @@ Acko.Effect.Visualizer.prototype = _.extend(new Acko.Effect(), {
       }
 
       // 3-tap average filter for levels
-      var level = (levels[bins[i]*8]/255 * volumes[i]) || 0;
-      level = Math.max(0, level*1.1 - .1);
+      var level = (levels[bins[i] * 8] / 255 * volumes[i]) || 0;
+      level = Math.max(0, level * 1.1 - .1);
 
       var l = this.levels[i];
       l.push(level);
@@ -288,8 +263,8 @@ Acko.Effect.Visualizer.prototype = _.extend(new Acko.Effect(), {
 
       // Compose motions
       var start = track.initial + track._length / 2 - length + offsets[i];
-      var wobble = (i > 7) ? 400 * pow(wild * (Math.sin(1+ph*2.31+i+Math.cos(ph*.181))+Math.sin(ph*.718)), 2) : 0;
-      var glide = Math.sin(ph) * (200 + length/3) * (1.0 - disperse * .75)  + 900 * disperse * pow(Math.sin(time * .64), .85);
+      var wobble = (i > 7) ? 400 * pow(wild * (Math.sin(1 + ph * 2.31 + i + Math.cos(ph * .181)) + Math.sin(ph * .718)), 2) : 0;
+      var glide = Math.sin(ph) * (200 + length / 3) * (1.0 - disperse * .75) + 900 * disperse * pow(Math.sin(time * .64), .85);
 
       track.travel = start + glide + wobble;
       track.length = length * 2;
@@ -346,47 +321,6 @@ Acko.Effect.Visualizer.prototype = _.extend(new Acko.Effect(), {
   resize: function (exports) {
   },
 
-  injectAudio: function () {
-    if (this.audio) return;
-
-    var audio = this.audio = new Audio();
-
-    var url;
-    var sources = [
-      ['audio/ogg', 'audio/dangerous-days.ogg'],
-      ['audio/mpeg', 'audio/dangerous-days.mp3'],
-    ];
-    sources.forEach(function (source) {
-      if (audio.canPlayType(source[0])) {
-        url = source[1];
-      }
-    });
-    if (!url) {
-      growl({ type: 'info', text: 'Your browser does not support MP3 or OGG audio playback.' });
-      return;
-    }
-
-    audio.style.display = 'none';
-    document.body.appendChild(audio);
-
-    audio.autoplay = true;
-    audio.src = url;
-
-    audio.addEventListener('play', function () {
-      try {
-        audio.currentTime = this.skip;
-      } catch (e) {};
-      audio.volume = 0;
-
-      growl({
-        type: 'music',
-        text: '<strong>Seba</strong><br>Dangerous Days',
-        delay: 500,
-        link: 'http://www.secretoperations.com/',
-      });
-    }.bind(this));
-  },
 });
 
-Acko.Effects.push(new Acko.Effect.Visualizer());
-
+Streams.Effects.push(new Streams.Effect.Visualizer());

@@ -1,5 +1,5 @@
-Acko.Effect.Compose = function () {
-  Acko.Effect.call(this);
+Streams.Effect.Compose = function () {
+  Streams.Effect.call(this);
 
   this.order = 100;
 
@@ -11,7 +11,7 @@ Acko.Effect.Compose = function () {
   this.white = new THREE.Color(0xffffff);
 }
 
-Acko.Effect.Compose.prototype = _.extend(new Acko.Effect(), {
+Streams.Effect.Compose.prototype = _.extend(new Streams.Effect(), {
 
   build: function (exports) {
     exports.compose = this;
@@ -34,7 +34,7 @@ Acko.Effect.Compose.prototype = _.extend(new Acko.Effect(), {
       },
     });
 
-    var ssaoShader = Acko.SSAOShader;
+    var ssaoShader = Streams.SSAOShader;
     var ssaoMaterial = this.ssaoMaterial =
       new ThreeRTT.ShaderMaterial(
         ssaoStage,
@@ -64,11 +64,11 @@ Acko.Effect.Compose.prototype = _.extend(new Acko.Effect(), {
     composer.addPass(ssaoEffect);
 
     // Bilateral upscaler
-    var ssaoScaler = this.ssaoScaler = new THREE.ShaderPass(Acko.SSAOUpShader);
+    var ssaoScaler = this.ssaoScaler = new THREE.ShaderPass(Streams.SSAOUpShader);
     composer.addPass(ssaoScaler);
 
     // 8bit pass
-    var eightBitEffect = this.eightBitEffect = new THREE.ShaderPass(Acko.EightBitShader);
+    var eightBitEffect = this.eightBitEffect = new THREE.ShaderPass(Streams.EightBitShader);
     eightBitEffect.renderToScreen = true;
     composer.addPass(eightBitEffect);
   },
@@ -143,10 +143,10 @@ Acko.Effect.Compose.prototype = _.extend(new Acko.Effect(), {
       renderer.render(scene, camera);
     }
 
-//    exports.debug.ssaoStage = this.ssaoStage;
-//    exports.debug.depthTarget = this.depthTarget;
-//    exports.debug.renderTarget1 = this.composer.renderTarget1;
-//    exports.debug.renderTarget2 = this.composer.renderTarget2;
+    //    exports.debug.ssaoStage = this.ssaoStage;
+    //    exports.debug.depthTarget = this.depthTarget;
+    //    exports.debug.renderTarget1 = this.composer.renderTarget1;
+    //    exports.debug.renderTarget2 = this.composer.renderTarget2;
 
     exports.ambientCorrection = this.ssao ? 0 : -.1;
   },
@@ -196,7 +196,4 @@ Acko.Effect.Compose.prototype = _.extend(new Acko.Effect(), {
 
 });
 
-Acko.Effects.push(new Acko.Effect.Compose());
-
-
-
+Streams.Effects.push(new Streams.Effect.Compose());

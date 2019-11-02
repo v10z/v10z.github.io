@@ -1,7 +1,7 @@
-window.Acko = window.Acko || {};
+window.Streams = window.Streams || {};
 
 var π = Math.PI,
-    τ = π * 2;
+  τ = π * 2;
 
 // Seedable random generator
 var rand = (function () {
@@ -10,11 +10,11 @@ var rand = (function () {
     seed = sd || seed;
 
     // Robert Jenkins' 32 bit integer hash function.
-    seed = ((seed + 0x7ed55d16) + (seed << 12))  & 0xffffffff;
+    seed = ((seed + 0x7ed55d16) + (seed << 12)) & 0xffffffff;
     seed = ((seed ^ 0xc761c23c) ^ (seed >>> 19)) & 0xffffffff;
-    seed = ((seed + 0x165667b1) + (seed << 5))   & 0xffffffff;
-    seed = ((seed + 0xd3a2646c) ^ (seed << 9))   & 0xffffffff;
-    seed = ((seed + 0xfd7046c5) + (seed << 3))   & 0xffffffff;
+    seed = ((seed + 0x165667b1) + (seed << 5)) & 0xffffffff;
+    seed = ((seed + 0xd3a2646c) ^ (seed << 9)) & 0xffffffff;
+    seed = ((seed + 0xfd7046c5) + (seed << 3)) & 0xffffffff;
     seed = ((seed ^ 0xb55a4f09) ^ (seed >>> 16)) & 0xffffffff;
 
     return (seed & 0xfffffff) / 0x10000000;
@@ -49,7 +49,7 @@ var log = (function () {
 // Local storage proxy
 var getStorage = function (key) {
   var o = localStorage[key];
-  if (o) try { o = JSON.parse(o) } catch (e) {};
+  if (o) try { o = JSON.parse(o) } catch (e) { };
   if (!o || typeof o != 'object' || o.forEach) {
     o = {};
   }
@@ -60,8 +60,8 @@ var setStorage = function (key, value) {
 };
 
 // Content scripts
-Acko.Behaviors = [];
-Acko.Behaviors.apply = function (el) {
+Streams.Behaviors = [];
+Streams.Behaviors.apply = function (el) {
   el = el || document.body;
   this.forEach(function (f) {
     f(el);
@@ -73,4 +73,3 @@ var _v = function (x, y, z) { return new THREE.Vector3(x, y, z); };
 var forEach = function (list, c) {
   Array.prototype.forEach.call(list, c);
 };
-
