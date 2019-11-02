@@ -2,7 +2,7 @@ html, body {
   height: 100%;
   margin: 0;
   padding: 0;
-  background: #fff;
+  background: rgba(255, 255, 255, 0);
 }
 
 html.js body {
@@ -23,7 +23,7 @@ html.js #native-frame {
   position: absolute;
   left: 0;
   right: 0;
-  top: 5000px;
+  top: 800px;
   z-index: 3;
 }
 
@@ -44,20 +44,20 @@ html.js body > canvas.frame {
 }
 
 html.no-js body {
-  background: #fff url(images/fallback.jpg) 50% 0 no-repeat;
+  background: rgba(255, 255, 255, 0) url(images/fallback.jpg) 50% 0 no-repeat;
   background-size: 100%;
 }
 
 @media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (-o-min-device-pixel-ratio: 3/2), only screen and (min--moz-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 1.5) {
   html.no-js body {
-    background: #fff url(images/fallback-retina.jpg) 50% 0 no-repeat;
+    background: rgba(255, 255, 255, 0) url(images/fallback-retina.jpg) 50% 0 no-repeat;
     background-size: 100%;
   }
 }
 
-@media only screen and (max-device-width: 1024px) { 
+@media only screen and (max-device-width: 1024px) {
   html.no-js body {
-    background: #fff url(images/fallback.jpg) 50% 0 no-repeat;
+    background: rgba(255, 255, 255, 0) url(images/fallback.jpg) 50% 0 no-repeat;
     background-size: 100%;
   }
 }

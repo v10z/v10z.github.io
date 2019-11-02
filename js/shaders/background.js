@@ -2,7 +2,7 @@
  * Backgrounds
  */
 
-Acko.SolidShader = {
+Streams.SolidShader = {
 
   uniforms: {
     opacity: { type: 'f', value: 0 },

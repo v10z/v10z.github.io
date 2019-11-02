@@ -1,17 +1,17 @@
-Acko.Fallback = function () {
+Streams.Fallback = function () {
   document.documentElement.classList.add('no-js');
   document.documentElement.classList.remove('js');
 
   // Navigation and behavior for native content
-  var scroll = window.scroller = new Acko.NativeScroll(0, 20000);
+  var scroll = window.scroller = new Streams.NativeScroll(0, 20000);
   scroll.init();
 
-  var nav = window.nav = new Acko.Nav('native-frame',  scroll);
+  var nav = window.nav = new Streams.Nav('native-frame', scroll);
   nav.updateExtents();
-  Acko.Behaviors.apply(document.body);
+  Streams.Behaviors.apply(document.body);
 };
 
-Acko.Fallback.isRequired = (function () {
+Streams.Fallback.isRequired = (function () {
 
   var oldOpera = navigator.userAgent.match(/Opera/) && !navigator.userAgent.match(/WebKit/);
 
@@ -24,14 +24,14 @@ Acko.Fallback.isRequired = (function () {
 
 })();
 
-Acko.Fallback.warnWebGL = function () {
-  if (Acko.Fallback.isRequired()) {
+Streams.Fallback.warnWebGL = function () {
+  if (Streams.Fallback.isRequired()) {
     var close = document.querySelector('#webgl-warning a.close:not(.pinged)');
     if (close) {
       close.classList.add('pinged');
       close.addEventListener('click', function (e) {
         e.preventDefault();
-        Acko.Fallback.dismissWebGL();
+        Streams.Fallback.dismissWebGL();
       });
     }
 
@@ -41,7 +41,7 @@ Acko.Fallback.warnWebGL = function () {
   }
 };
 
-Acko.Fallback.dismissWebGL = function () {
+Streams.Fallback.dismissWebGL = function () {
   var warning = document.querySelector('#webgl-warning');
   warning.classList.add('collapsed');
 };

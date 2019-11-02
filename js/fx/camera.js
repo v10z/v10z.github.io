@@ -1,5 +1,5 @@
-Acko.Effect.Camera = function () {
-  Acko.Effect.call(this);
+Streams.Effect.Camera = function () {
+  Streams.Effect.call(this);
 
   this.order = -2;
   this.fov = 30;
@@ -49,8 +49,8 @@ Acko.Effect.Camera = function () {
   this.growlCancel = [];
   this.lastAudio = 0;
   this.cameraLock = true;
-  this.rides = Acko.CameraRides;
-  this.activeRide = -1 ;
+  this.rides = Streams.CameraRides;
+  this.activeRide = -1;
 
   this.v1 = _v();
   this.v2 = _v();
@@ -67,7 +67,7 @@ Acko.Effect.Camera = function () {
   this.container = null;
 }
 
-Acko.Effect.Camera.prototype = _.extend(new Acko.Effect(), {
+Streams.Effect.Camera.prototype = _.extend(new Streams.Effect(), {
 
   build: function (exports) {
     exports.cameraController = this;
@@ -88,7 +88,7 @@ Acko.Effect.Camera.prototype = _.extend(new Acko.Effect(), {
 
     var cursor = function (e) {
       e = e || {};
-      var mouseY = (e.clientY || last[3]) + (this.last.y||0);
+      var mouseY = (e.clientY || last[3]) + (this.last.y || 0);
       if (e.clientY) {
         last[3] = e.clientY;
       }
@@ -108,102 +108,102 @@ Acko.Effect.Camera.prototype = _.extend(new Acko.Effect(), {
 
     }.bind(this);
 
-    document.addEventListener('mousedown', 
+    document.addEventListener('mousedown',
       this.handlers.document.mousedown = function (e) {
 
-      if (e.which != 1 || (e.target.tagName == 'SELECT')) return;
+        if (e.which != 1 || (e.target.tagName == 'SELECT')) return;
 
-      drag = draggable;
-      last = [e.pageX, e.pageY, e.clientX, e.clientY];
+        drag = draggable;
+        last = [e.pageX, e.pageY, e.clientX, e.clientY];
 
-      if (drag) {
-        e.preventDefault();
-      }
-    }.bind(this));
+        if (drag) {
+          e.preventDefault();
+        }
+      }.bind(this));
 
     document.addEventListener('mouseup',
       this.handlers.document.mouseup = function (e) {
 
-      drag = false;
-      this.cameraLock = false;
+        drag = false;
+        this.cameraLock = false;
 
-    }.bind(this));
+      }.bind(this));
 
     document.addEventListener('mousemove',
       this.handlers.document.mousemove = function (e) {
 
-      lastTarget = e.target;
-      cursor(e);
+        lastTarget = e.target;
+        cursor(e);
 
-      if (drag) {
-        var now = [e.pageX, e.pageY, e.clientX, e.clientY];
+        if (drag) {
+          var now = [e.pageX, e.pageY, e.clientX, e.clientY];
 
-        this.phiT -= (now[0] - last[0]) * .005;
-        this.thetaT = Math.min(π/2 * .9, Math.max(-π/2 * .9, this.thetaT + (now[1] - last[1]) * .005));
-        last = now;
-      }
+          this.phiT -= (now[0] - last[0]) * .005;
+          this.thetaT = Math.min(π / 2 * .9, Math.max(-π / 2 * .9, this.thetaT + (now[1] - last[1]) * .005));
+          last = now;
+        }
 
-    }.bind(this));
+      }.bind(this));
 
     window.addEventListener('scroll',
       this.handlers.window.scroll = function (e) {
 
-      cursor();
-    });
+        cursor();
+      });
 
     // WASD controls
     document.addEventListener('keydown',
       this.handlers.document.keydown = function (e) {
 
-      if (!this.controls) return;
+        if (!this.controls) return;
 
-      switch (e.keyCode) {
-        case 68:
-          this.phiDelta = -1;
-          break;
-        case 65:
-          this.phiDelta = 1;
-          break;
-        case 87:
-          this.thetaDelta = -1;
-          break;
-        case 83:
-          this.thetaDelta += 1;
-          break;
-        case 81:
-          this.orbitFactor = 1;
-          break;
-        case 69:
-          this.orbitFactor = -1;
-          break;
-      }
+        switch (e.keyCode) {
+          case 68:
+            this.phiDelta = -1;
+            break;
+          case 65:
+            this.phiDelta = 1;
+            break;
+          case 87:
+            this.thetaDelta = -1;
+            break;
+          case 83:
+            this.thetaDelta += 1;
+            break;
+          case 81:
+            this.orbitFactor = 1;
+            break;
+          case 69:
+            this.orbitFactor = -1;
+            break;
+        }
 
-    }.bind(this));
-    document.addEventListener('keyup', 
+      }.bind(this));
+    document.addEventListener('keyup',
       this.handlers.document.keyup = function (e) {
 
-      if (e.keyCode == 13 || e.keyCode == 32 || e.keyCode == 27) {
-        this.stopRide();
-      }
+        if (e.keyCode == 13 || e.keyCode == 32 || e.keyCode == 27) {
+          this.stopRide();
+        }
 
-      if (!this.controls) return;
+        if (!this.controls) return;
 
-      switch (e.keyCode) {
-        case 68:
-        case 65:
-          this.phiDelta = 0;
-          break;
-        case 87:
-        case 83:
-          this.thetaDelta = 0;
-          break;
-        case 81:
-        case 69:
-          this.orbitFactor = 0;
-          break;
-      }
+        switch (e.keyCode) {
+          case 68:
+          case 65:
+            this.phiDelta = 0;
+            break;
+          case 87:
+          case 83:
+            this.thetaDelta = 0;
+            break;
+          case 81:
+          case 69:
+            this.orbitFactor = 0;
+            break;
+        }
 
-    }.bind(this));
+      }.bind(this));
 
     this.pointerPunch = document.querySelector('.pointer-punch');
 
@@ -257,7 +257,7 @@ Acko.Effect.Camera.prototype = _.extend(new Acko.Effect(), {
 
     // Key controls
     var speed = .05;
-    this.thetaT = Math.min(π/2 * .9, Math.max(-π/2 * .9, this.thetaT + speed * this.thetaDelta));
+    this.thetaT = Math.min(π / 2 * .9, Math.max(-π / 2 * .9, this.thetaT + speed * this.thetaDelta));
     this.phiT += speed * this.phiDelta;
     this.orbitT = Math.min(1.6, this.orbitT * pow(1.07, this.orbitFactor));
 
@@ -281,13 +281,13 @@ Acko.Effect.Camera.prototype = _.extend(new Acko.Effect(), {
     var unit = this.scrollEase;
     var ratio = this.scrollEaseRatio;
     function scrollEase(y) {
-      var t = y/unit;
-      t = (t<.5?t*t:t-.25)*unit;
+      var t = y / unit;
+      t = (t < .5 ? t * t : t - .25) * unit;
       return t + (y - t) * ratio;
     }
 
     // Live hero graphic resizing for responsive layout
-    exports.heroAbsScale = (1 + (1/this.overlayScale - 1) * ease) * .8;
+    exports.heroAbsScale = (1 + (1 / this.overlayScale - 1) * ease) * .8;
 
     // Stuff
     if (Time.isSlow() && (exports.visualizer.playing || this.tracks.tracks[0].speed > 0 || this.tracks.blackhole > 0.1)) {
@@ -302,8 +302,8 @@ Acko.Effect.Camera.prototype = _.extend(new Acko.Effect(), {
     if (!this.audioWaiting && this.ride) {
 
       try {
-        this.audio.volume = Acko.globalVolume;
-      } catch (e) {};
+        this.audio.volume = Streams.globalVolume;
+      } catch (e) { };
 
       // Slave clock to audio
       var delta = this.audio.currentTime == 0 ? 0 : exports.delta / Time.getSpeed();
@@ -337,7 +337,7 @@ Acko.Effect.Camera.prototype = _.extend(new Acko.Effect(), {
       var offset = ride[4];
       var fovScale = ride[5];
       var lerpScale = Math.min(1 / 10, delta) / .016 / Time.getSpeed();
-      var lerp = Math.pow(ride[6]*2, 1/lerpScale);
+      var lerp = Math.pow(ride[6] * 2, 1 / lerpScale);
       var targetOffset = ride[8] || [0, 0, 0];
       var correctBend = !ride[9];
 
@@ -363,16 +363,16 @@ Acko.Effect.Camera.prototype = _.extend(new Acko.Effect(), {
         m2.copy(m.mat4);
 
         v2.set(m1.elements[4] * offset * flip,
-               m1.elements[5] * offset * flip,
-               m1.elements[6] * offset * flip);
+          m1.elements[5] * offset * flip,
+          m1.elements[6] * offset * flip);
 
         v1.set(m1.elements[12],
-               m1.elements[13],
-               m1.elements[14]).add(v2);
+          m1.elements[13],
+          m1.elements[14]).add(v2);
 
         v3.set(m2.elements[12],
-               m2.elements[13],
-               m2.elements[14]).add(v2);
+          m2.elements[13],
+          m2.elements[14]).add(v2);
 
         v3.x += targetOffset[0];
         v3.y += targetOffset[1];
@@ -395,26 +395,26 @@ Acko.Effect.Camera.prototype = _.extend(new Acko.Effect(), {
 
       // Track offset
       v2.set(m1.elements[4] * offset * flip,
-             m1.elements[5] * offset * flip,
-             m1.elements[6] * offset * flip);
+        m1.elements[5] * offset * flip,
+        m1.elements[6] * offset * flip);
 
       // Get pos + offset
       v1.set(m1.elements[12],
-             m1.elements[13],
-             m1.elements[14]).add(v2);
+        m1.elements[13],
+        m1.elements[14]).add(v2);
 
       // Dampen look ahead on track on downward bends
       v3.set(m2.elements[12],
-             m2.elements[13],
-             m2.elements[14]).add(v2).sub(v1);
+        m2.elements[13],
+        m2.elements[14]).add(v2).sub(v1);
       v4.set(m1.elements[4] * flip,
-             m1.elements[5] * flip,
-             m1.elements[6] * flip);
+        m1.elements[5] * flip,
+        m1.elements[6] * flip);
       var d = v3.dot(v4) / v3.length();
 
       var lhf = 1.0;
       if (correctBend && (d < 0)) {
-        lhf = Math.max(.2, 1 + d*.2 - d*d*.6);
+        lhf = Math.max(.2, 1 + d * .2 - d * d * .6);
         var lh = lookAhead * lhf;
         matrices2 = rideTrack.getMatrices(rideTrack.lengthMap.map(this.travel + lh));
         m2 = matrices2.mat4;
@@ -434,9 +434,9 @@ Acko.Effect.Camera.prototype = _.extend(new Acko.Effect(), {
       // Construct camera matrix
       var m = c.matrix;
       m.set(1, 0, 0, this.ridePos.x,
-            0, 1, 0, this.ridePos.y,
-            0, 0, 1, this.ridePos.z,
-            0, 0, 0, 1);
+        0, 1, 0, this.ridePos.y,
+        0, 0, 1, this.ridePos.z,
+        0, 0, 0, 1);
 
       m.lookAt(this.ridePos, this.rideTarget, this.rideUp);
 
@@ -591,13 +591,13 @@ Acko.Effect.Camera.prototype = _.extend(new Acko.Effect(), {
 
     // Intro tracking shot
     var t = Math.max(0, 8 - time) * .303125;
-    t = (t < .5 ? t*t : t - .25) * 4;
+    t = (t < .5 ? t * t : t - .25) * 4;
 
-    this.lookAt.x = -t*t * 6;
+    this.lookAt.x = -t * t * 6;
     this.lookAt.y = -t * 18;
 
     this.center.x = -t * 50;
-    this.center.z = -t*t * 10;
+    this.center.z = -t * t * 10;
     this.center.y = t * 52;
   },
 
@@ -646,7 +646,6 @@ Acko.Effect.Camera.prototype = _.extend(new Acko.Effect(), {
     this.visualizer.stop();
     this.tracks.override(true);
 
-    this.injectAudio();
   },
 
   resize: function (exports) {
@@ -656,7 +655,7 @@ Acko.Effect.Camera.prototype = _.extend(new Acko.Effect(), {
 
     c.aspect = exports.aspect;
 
-    this.heroScale = Math.max(1, h/w*1.9);
+    this.heroScale = Math.max(1, h / w * 1.9);
     exports.overlayScale = this.overlayScale = Math.max(960 / w, 1);
     this.scrollEase = h * this.scrollEaseRange;
 
@@ -674,59 +673,6 @@ Acko.Effect.Camera.prototype = _.extend(new Acko.Effect(), {
     exports.cameraScrollYOffset = (1 - this.scrollEaseRatio) * .25 * this.scrollEase;
   },
 
-  injectAudio: function () {
-    if (this.audio) return;
-
-    var audio = this.audio = new Audio();
-
-    var url;
-    var sources = [
-      ['audio/ogg', 'audio/this-world.ogg'],
-      ['audio/mpeg', 'audio/this-world.mp3'],
-    ];
-    sources.forEach(function (source) {
-      if (audio.canPlayType(source[0])) {
-        url = source[1];
-      }
-    });
-    if (!url) {
-      growl({ type: 'info', text: 'Your browser does not support MP3 or OGG audio playback.' });
-      return;
-    }
-
-    audio.autoplay = true;
-    audio.style.display = 'none';
-    audio.src = url;
-
-    this.audioWaiting = true;
-
-    audio.addEventListener('play', function () {
-      this.audioWaiting = false;
-      audio.currentTime = 0;
-
-
-      this.growlCancel.push(growl({
-        type: 'info',
-        text: 'Scroll down to stop',
-      }));
-      this.growlCancel.push(growl({
-        type: 'music',
-        text: '<strong>Selah Sue</strong><br>This World',
-        delay: 1000,
-        link: 'http://www.selahsue.com/',
-      }));
-    }.bind(this));
-
-    audio.addEventListener('ended', function () {
-      this.audioWaiting = true;
-      this.cycleRide();
-      this.activeRide = 0;
-
-      audio.play();
-    }.bind(this));
-
-    document.body.appendChild(audio);
-  },
 
   fadeAudio: function () {
     var audio = this.audio;
@@ -735,7 +681,7 @@ Acko.Effect.Camera.prototype = _.extend(new Acko.Effect(), {
     var fade = 1;
     var interval = setInterval(function () {
       fade = fade * .95;
-      audio.volume = fade * Acko.globalVolume;
+      audio.volume = fade * Streams.globalVolume;
 
       if (fade < .001) {
         audio.pause();
@@ -747,14 +693,14 @@ Acko.Effect.Camera.prototype = _.extend(new Acko.Effect(), {
 
 });
 
-Acko.Effects.push(new Acko.Effect.Camera());
+Streams.Effects.push(new Streams.Effect.Camera());
 (function () {
   // Shitty depth buffer on mobile
   var crap = navigator.userAgent.match(/Android/);
   if (crap) {
-    Acko.Effect.Camera.camera = new THREE.PerspectiveCamera(45, 1, 500, 10000);
+    Streams.Effect.Camera.camera = new THREE.PerspectiveCamera(45, 1, 500, 10000);
   }
   else {
-    Acko.Effect.Camera.camera = new THREE.PerspectiveCamera(45, 1, 2, 17000);
+    Streams.Effect.Camera.camera = new THREE.PerspectiveCamera(45, 1, 2, 17000);
   }
 })();

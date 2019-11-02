@@ -1,6 +1,6 @@
 // Config panel
-Acko.Effect.Config = function () {
-  Acko.Effect.call(this);
+Streams.Effect.Config = function () {
+  Streams.Effect.call(this);
 
   this.order = Infinity;
   this.group = null;
@@ -12,7 +12,7 @@ Acko.Effect.Config = function () {
   this.last = Infinity;
 }
 
-Acko.Effect.Config.prototype = _.extend(new Acko.Effect(), {
+Streams.Effect.Config.prototype = _.extend(new Streams.Effect(), {
 
   build: function (exports) {
 
@@ -74,10 +74,10 @@ Acko.Effect.Config.prototype = _.extend(new Acko.Effect(), {
     }
 
     stats.domElement.style.display = c.fps ? 'block' : 'none';
-    Acko.globalVolume = c.mute ? 0 : 1;
+    Streams.globalVolume = c.mute ? 0 : 1;
 
     if (form) {
-      this.select.selectedIndex = {'normal':0,'ssao':1,'ega':2}[c.style];
+      this.select.selectedIndex = { 'normal': 0, 'ssao': 1, 'ega': 2 }[c.style];
       this.fps.checked = !!c.fps;
       this.mute.checked = !!c.mute;
     }
@@ -133,7 +133,7 @@ Acko.Effect.Config.prototype = _.extend(new Acko.Effect(), {
 
   update: function (exports) {
     if (exports.time < 8) {
-      var time = .5-.5*Math.cos(Math.max(0, Math.min(1, (exports.time - 6.7) / .9))*π);
+      var time = .5 - .5 * Math.cos(Math.max(0, Math.min(1, (exports.time - 6.7) / .9)) * π);
       this.div.style.opacity = time;
     }
 
@@ -147,7 +147,7 @@ Acko.Effect.Config.prototype = _.extend(new Acko.Effect(), {
         for (k in a) {
           var v = a[k], title;
           if (getAchievement(k) && (title = getAchievement(v))) {
-            html.push([k, '<span style="background-image: url(/achievements/' + v + '.png)" title="'+ title + '"></span>']);
+            html.push([k, '<span style="background-image: url(/achievements/' + v + '.png)" title="' + title + '"></span>']);
           }
         }
 
@@ -166,14 +166,14 @@ Acko.Effect.Config.prototype = _.extend(new Acko.Effect(), {
   resize: function (exports) {
     var resolution = exports.width + ' × ' + exports.height;
     var aa = (exports.compose.msaa && !exports.compose.ssao && !exports.compose.eightbit)
-             ? ('MSAA×' + exports.compose.msaa)
-             : (exports.compose.fxaa ? 'FXAA' : 'No AA');
+      ? ('MSAA×' + exports.compose.msaa)
+      : (exports.compose.fxaa ? 'FXAA' : 'No AA');
 
     this.resolution.innerHTML = resolution + ' <span>' + aa + '</span>';
   },
 
 });
 
-Acko.Effects.push(new Acko.Effect.Config());
+Streams.Effects.push(new Streams.Effect.Config());
 
-Acko.globalVolume = 1;
+Streams.globalVolume = 1;

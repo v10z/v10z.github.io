@@ -1,40 +1,46 @@
 body {
   font-size: 16px;
   line-height: 28px;
+font-family: "Computer Modern";
+    src: url('http://mirrors.ctan.org/fonts/cm-unicode/fonts/otf/cmunss.otf');
 
-  font-family: 'klavika-web', sans-serif;
   font-weight: normal;
   font-style: normal;
-  
+
   color: #353535;
 }
 
-h1 {
-  font-family: 'klavika-web', sans-serif;
+h1 {font-family: "Computer Modern";
+    src: url('http://mirrors.ctan.org/fonts/cm-unicode/fonts/otf/cmunss.otf');
+
   font-weight: bold;
   font-style: italic;
   letter-spacing: -1px;
-  
+
   font-size: 36px;
 }
 
 h2 {
-  font-family: 'Klavika-web', sans-serif;
+font-family: "Computer Modern";
+    src: url('http://mirrors.ctan.org/fonts/cm-unicode/fonts/otf/cmunss.otf');
+
   font-weight: bold;
   font-style: italic;
   letter-spacing: -1px;
-  
+
   font-size: 26px;
-}  
+}
 
 h3 {
-  font-family: 'Klavika-web', sans-serif;
+  font-family: "Computer Modern";
+    src: url('http://mirrors.ctan.org/fonts/cm-unicode/fonts/otf/cmunss.otf');
+
   font-weight: bold;
   font-style: normal;
   letter-spacing: -1px;
-  
+
   font-size: 22px;
-}  
+}
 
 h1, h2 {
   color: rgb(71,108,136);
@@ -89,7 +95,7 @@ p a, ol a, ul a, article.full a {
 }
 nav a:hover, p a:hover, ol a:hover, ul a:hover {
   color: rgb(80,123,155);
-  color: rgb(100,188,202); 
+  color: rgb(100,188,202);
 }
 
 .summary h1, .tv h1 {
@@ -220,11 +226,12 @@ a:hover .icon-feed span:nth-child(3) {
 
 
 nav a {
-  font-family: 'Klavika-web', sans-serif;
+  font-family: "Computer Modern";
+    src: url('http://mirrors.ctan.org/fonts/cm-unicode/fonts/otf/cmunss.otf');
   font-weight: bold;
   font-style: italic;
   letter-spacing: -1px;
-  
+
   font-size: 20px;
   color: rgb(153,175,187);
 }
@@ -278,7 +285,8 @@ h1.h0 {
 
 /* serif */
 body .serif, .serif h1, .serif h2, .serif h3, .serif em, .serif a, .serif acronym, .serif p acronym {
-  font-family: "Palatino", "Palatino Linotype", "Book Antiqua", serif;
+  font-family: "Computer Modern";
+    src: url('http://mirrors.ctan.org/fonts/cm-unicode/fonts/otf/cmunss.otf');
   line-height: 36px;
   color: #000;
 }
@@ -385,7 +393,8 @@ small {
 
 
 kbd {
-  font-family: 'klavika-web', sans-serif;
+  font-family: "Computer Modern";
+    src: url('http://mirrors.ctan.org/fonts/cm-unicode/fonts/otf/cmunss.otf');
   font-weight: normal;
   font-style: normal;
 
@@ -409,5 +418,5 @@ kbd {
   	left top,
   	color-stop(0, rgb(214,214,214)),
   	color-stop(0.84, rgb(240,240,240))
-  );  
+  );
 }
