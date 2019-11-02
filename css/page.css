@@ -2,7 +2,7 @@ html, body {
   height: 100%;
   margin: 0;
   padding: 0;
-  background: #fff;
+  background: rgba(255, 255, 255, 0);
 }
 
 html.js body {
@@ -55,7 +55,7 @@ html.no-js body {
   }
 }
 
-@media only screen and (max-device-width: 1024px) { 
+@media only screen and (max-device-width: 1024px) {
   html.no-js body {
     background: #fff url(images/fallback.jpg) 50% 0 no-repeat;
     background-size: 100%;
