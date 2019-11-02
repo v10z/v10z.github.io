@@ -69,6 +69,6 @@
 
   handler();
   DomReady.ready(handler);
-  Acko.Behaviors.push(function (el) { handler(null, el); });
+  Streams.Behaviors.push(function (el) { handler(null, el); });
 
 })();

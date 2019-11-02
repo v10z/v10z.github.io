@@ -1,15 +1,15 @@
 // Delayed execution for in-post scripts
-Acko.Queue = [];
+Streams.Queue = [];
 
-Acko.queue = function (c) {
-  Acko.Queue.push(c);
+Streams.queue = function (c) {
+  Streams.Queue.push(c);
 };
 
-Acko.Behaviors.push(function () {
-  Acko.Queue.forEach(function (c) {
+Streams.Behaviors.push(function () {
+  Streams.Queue.forEach(function (c) {
     c();
   });
-  Acko.Queue = [];
+  Streams.Queue = [];
 });
 
 (function () {
@@ -87,14 +87,14 @@ Acko.Behaviors.push(function () {
       var type = attributes.match(/\s*type=("([^"]*)"|'([^']*)'|([^>]*))/i);
 
       if (type) {
-        type = (type[2]||"") + (type[3]||"") + (type[4]||"");
+        type = (type[2] || "") + (type[3] || "") + (type[4] || "");
         if (type != 'text/javascript') {
           return;
         }
       }
 
       if (src) {
-        var url = decodeEntities((src[2]||"") + (src[3]||"") + (src[4]||""));
+        var url = decodeEntities((src[2] || "") + (src[3] || "") + (src[4] || ""));
         if (url) {
           out.push({ source: script[0], url: url });
         }
@@ -121,7 +121,7 @@ Acko.Behaviors.push(function () {
 
   // Main nav controller
 
-  Acko.Nav = function (selector, scroll, gl) {
+  Streams.Nav = function (selector, scroll, gl) {
     this.container = document.getElementById(selector);
     this.scroll = scroll;
     this.gl = gl;
@@ -132,14 +132,14 @@ Acko.Behaviors.push(function () {
 
     this.cache = {};
 
-    if (Acko.History.isSupported()) {
-      this.history = new Acko.History(this);
+    if (Streams.History.isSupported()) {
+      this.history = new Streams.History(this);
     }
 
     this.bind();
   };
 
-  Acko.Nav.prototype = {
+  Streams.Nav.prototype = {
 
     bind: function () {
       var resize = function () {
@@ -151,7 +151,7 @@ Acko.Behaviors.push(function () {
       this.width = window.innerWidth;
       window.addEventListener('resize', resize);
 
-      Acko.Behaviors.push(function (el) {
+      Streams.Behaviors.push(function (el) {
         this.applyBehavior(el);
       }.bind(this));
     },
@@ -164,7 +164,7 @@ Acko.Behaviors.push(function () {
 
       // Hero margin
       var computed = window.getComputedStyle(this.container);
-      h += this.container.offsetTop + (parseInt(computed.paddingTop)||0);
+      h += this.container.offsetTop + (parseInt(computed.paddingTop) || 0);
 
       this.scroll.extents(0, h);
     },
@@ -178,12 +178,12 @@ Acko.Behaviors.push(function () {
         }.bind(this));
       }
 
-      var links = el.querySelectorAll('a:not(.' + classMarker +')');
+      var links = el.querySelectorAll('a:not(.' + classMarker + ')');
 
       forEach(links, function (el) {
         el.classList.add(classMarker);
 
-        var href = ''+(el.getAttribute('href')||'');
+        var href = '' + (el.getAttribute('href') || '');
         var local = href.match(/^\/(?!\/)/);
 
         if (local) {
@@ -194,7 +194,7 @@ Acko.Behaviors.push(function () {
 
             var reverse = el.classList.contains('reverse');
             var computed = window.getComputedStyle(this.container);
-            var scrollOffset = Math.round(this.container.offsetTop + (parseInt(computed.paddingTop)||0) - 200);
+            var scrollOffset = Math.round(this.container.offsetTop + (parseInt(computed.paddingTop) || 0) - 200);
 
             this.navigateTo(el.href, reverse, scrollOffset, true);
 
@@ -224,7 +224,7 @@ Acko.Behaviors.push(function () {
         }
 
         this.transitionContent(
-          content, 
+          content,
           duration,
           delay,
           reverse,
@@ -233,7 +233,7 @@ Acko.Behaviors.push(function () {
 
             this.runScripts(scripts, function () {
               this.restoreSources();
-              Acko.Behaviors.apply(this.container);
+              Streams.Behaviors.apply(this.container);
 
               callback && callback();
             }.bind(this));
@@ -245,7 +245,7 @@ Acko.Behaviors.push(function () {
         if (!cache) {
           this.cache[url] = {
             content: content,
-            title:   title,
+            title: title,
             scripts: scripts,
           };
         }
@@ -264,11 +264,11 @@ Acko.Behaviors.push(function () {
 
     processHTML: function (html, callback) {
       var content = extractContent(html);
-      var title   = extractTitle(html);
+      var title = extractTitle(html);
       var scripts = extractScripts(content);
       var iframes = extractIframes(content);
-      var images  = extractImages(content);
-      var videos  = extractVideos(content);
+      var images = extractImages(content);
+      var videos = extractVideos(content);
 
       scripts.forEach(function (script) {
         content = content.replace(script.source, '');
@@ -348,7 +348,7 @@ Acko.Behaviors.push(function () {
       this.gl && this.gl.exports.replace.reset();
 
       // Animate
-      var started = Time.clock() + (delay||0);
+      var started = Time.clock() + (delay || 0);
       this.animating = true;
       loop();
     },

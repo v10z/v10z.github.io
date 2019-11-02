@@ -3,35 +3,35 @@ classes.add('js');
 classes.remove('no-js');
 
 DomReady.ready(function () {
-  if (Acko.Fallback.isRequired()) {
-    Acko.Fallback();
+  if (Streams.Fallback.isRequired()) {
+    Streams.Fallback();
   }
   else {
-    Acko.Main();
+    Streams.Main();
   }
 });
 
-Acko.Main = function () {
+Streams.Main = function () {
 
   // Do intro or not
   var doIntro = location.pathname == '/';
   doIntro = true; // For Github release
 
   // Scroll mechanism
-  var scroll = new Acko.NativeScroll(0, 20000);
-  var camera = Acko.Effect.Camera.camera;
+  var scroll = new Streams.NativeScroll(0, 20000);
+  var camera = Streams.Effect.Camera.camera;
   scroll.init();
 
   // FPS stats
-  var stats  = window.stats = new Stats();
-  stats.domElement.style.position  = 'fixed';
-  stats.domElement.style.zIndex  = 100;
-  stats.domElement.style.display  = 'none';
+  var stats = window.stats = new Stats();
+  stats.domElement.style.position = 'fixed';
+  stats.domElement.style.zIndex = 100;
+  stats.domElement.style.display = 'none';
   document.body.appendChild(stats.domElement);
 
   // WebGL renderer
-  var gl = new Acko.Renderer({
-    effects: Acko.Effects,
+  var gl = new Streams.Renderer({
+    effects: Streams.Effects,
     klass: THREE.WebGLRenderer,
     camera: camera,
     type: 'webgl',
@@ -48,8 +48,8 @@ Acko.Main = function () {
 
   // CSS 3D renderer
   var cameraElement = document.getElementById('camera-frame');
-  var css3d = new Acko.Renderer({
-    effects: Acko.Effects,
+  var css3d = new Streams.Renderer({
+    effects: Streams.Effects,
     klass: THREE.CSS3DRenderer,
     camera: camera,
     type: 'css3d',
@@ -61,7 +61,7 @@ Acko.Main = function () {
   css3d.init();
 
   // Navigation and behavior for native content
-  var nav = new Acko.Nav('native-frame', scroll, gl);
+  var nav = new Streams.Nav('native-frame', scroll, gl);
   nav.updateExtents();
   window.onload = nav.updateExtents();
 
@@ -80,7 +80,7 @@ Acko.Main = function () {
   window.scroller = scroll;
 
   // Apply HTML behaviors
-  Acko.Behaviors.apply(document.body);
+  Streams.Behaviors.apply(document.body);
 
   // Render loop
   var focus = true;
@@ -124,14 +124,14 @@ Acko.Main = function () {
     // d) camera is centered
     // e) nothing fancy is happening
     var on = visible
-            && (false
-             || (Time.clock() < 15)
-             || !gl.exports.pastMasthead
-             || scrolled
-             || Math.abs(gl.exports.cameraController.phiT) > .0001
-             || gl.exports.visualizer.playing
-             || !gl.exports.cameraController.bound
-             );
+      && (false
+        || (Time.clock() < 15)
+        || !gl.exports.pastMasthead
+        || scrolled
+        || Math.abs(gl.exports.cameraController.phiT) > .0001
+        || gl.exports.visualizer.playing
+        || !gl.exports.cameraController.bound
+      );
     last = s;
 
     // Fix for excessive downscaling: reset at top.

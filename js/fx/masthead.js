@@ -1,5 +1,5 @@
-Acko.Effect.Masthead = function () {
-  Acko.Effect.call(this);
+Streams.Effect.Masthead = function () {
+  Streams.Effect.call(this);
 
   this.order = 0;
   this.group = null;
@@ -15,7 +15,7 @@ Acko.Effect.Masthead = function () {
   this.hovered = false;
 }
 
-Acko.Effect.Masthead.prototype = _.extend(new Acko.Effect(), {
+Streams.Effect.Masthead.prototype = _.extend(new Streams.Effect(), {
 
   build: function (exports) {
     exports.masthead = this;
@@ -94,7 +94,7 @@ Acko.Effect.Masthead.prototype = _.extend(new Acko.Effect(), {
     arrow.position.x = -30;
     arrow.position.y = -120;
     arrow.position.z = 200;
-    arrow.scale.set(.7, .672*.6, 1);
+    arrow.scale.set(.7, .672 * .6, 1);
 
     arrow.rotation.z = -τ/4;
 
@@ -107,9 +107,9 @@ Acko.Effect.Masthead.prototype = _.extend(new Acko.Effect(), {
 
   update: function (exports) {
     var ride = exports.ride ? 0 : 1;
-    var time = .5-.5*Math.cos(Math.max(0, Math.min(1, (exports.time - 6.7) / .9))*π);
+    var time = .5 - .5 * Math.cos(Math.max(0, Math.min(1, (exports.time - 6.7) / .9)) * π);
     var rotated = Math.max(0, Math.min(1, Math.cos(exports.cameraController.phi + .5) * 4 - 2.5));
-    var lerp = Math.max(0, 1.0 - exports.cameraLerp*exports.cameraLerp * 4.0);
+    var lerp = Math.max(0, 1.0 - exports.cameraLerp * exports.cameraLerp * 4.0);
 
     this.titleOpacity = this.titleOpacity + (+this.showTitle - this.titleOpacity) * .1;
     this.arrowOpacity = this.arrowOpacity + (+this.showArrow - this.arrowOpacity) * .1;
@@ -200,4 +200,4 @@ Acko.Effect.Masthead.prototype = _.extend(new Acko.Effect(), {
 
 });
 
-Acko.Effects.push(new Acko.Effect.Masthead());
+Streams.Effects.push(new Streams.Effect.Masthead());

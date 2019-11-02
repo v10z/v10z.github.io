@@ -11,7 +11,7 @@
  * - refactoring and optimizations
  */
 
-Acko.SSAOShader = {
+Streams.SSAOShader = {
 
   uniforms: {
 
@@ -215,7 +215,7 @@ Acko.SSAOShader = {
  * Bilateral upsample for SSAO
  */
 
-Acko.SSAOUpShader = {
+Streams.SSAOUpShader = {
 
   uniforms: {
 

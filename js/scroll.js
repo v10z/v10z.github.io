@@ -1,15 +1,15 @@
 (function () {
 
-Acko.Scroll = function (width, height) {
-  this.x = new Acko.Scroll.Coordinate();
-  this.y = new Acko.Scroll.Coordinate();
+Streams.Scroll = function (width, height) {
+  this.x = new Streams.Scroll.Coordinate();
+  this.y = new Streams.Scroll.Coordinate();
 
   this.object = { x: this.x.value, y: this.y.value };
 
   this.extents(width, height);
 }
 
-var ASP = Acko.Scroll.prototype = {
+var ASP = Streams.Scroll.prototype = {
 
   init: function () {
     window.addEventListener('resize', this.resize.bind(this));
@@ -84,12 +84,12 @@ var ASP = Acko.Scroll.prototype = {
 
 }
 
-Acko.Scroll.Coordinate = function (value, min, max, thumb) {
+Streams.Scroll.Coordinate = function (value, min, max, thumb) {
   this.value = value;
   this.fit(min, max, thumb);
 }
 
-Acko.Scroll.Coordinate.prototype = {
+Streams.Scroll.Coordinate.prototype = {
 
   set: function (value) {
     this.value = Math.max(this.min, Math.min(this.max, value || 0));
@@ -104,13 +104,13 @@ Acko.Scroll.Coordinate.prototype = {
 
 }
 
-Acko.NativeScroll = function (width, height) {
-  Acko.Scroll.call(this, width, height);
+Streams.NativeScroll = function (width, height) {
+  Streams.Scroll.call(this, width, height);
 
   this.ignoreEvents = 0;
 }
 
-Acko.NativeScroll.prototype = _.extend(new Acko.Scroll(), {
+Streams.NativeScroll.prototype = _.extend(new Streams.Scroll(), {
 
   init: function () {
     ASP.init.call(this);

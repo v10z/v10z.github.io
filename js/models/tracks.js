@@ -1,6 +1,6 @@
-Acko.TrackData = [
+Streams.TrackData = [
 
-  // Acko A
+  // Streams A
   {
     n: 8,
     power: .4,
@@ -34,7 +34,7 @@ Acko.TrackData = [
     smooth: 4,
     up: _v(0, 2.4, 1),
     detail: 8,
-    color: Acko.Palette.platinum[2],
+    color: Streams.Palette.platinum[2],
     distance: 3300,
     castAO: .85,
     receiveAO: .85,
@@ -80,7 +80,7 @@ Acko.TrackData = [
     smooth: 4,
     up: _v(0, 2.4, 1),
     detail: 8,
-    color: Acko.Palette.red[0],
+    color: Streams.Palette.red[0],
     distance: 3300,
     castAO: false,
     AOStep: 40,
@@ -88,7 +88,7 @@ Acko.TrackData = [
     truncate: 30,
   },
 
-  // Acko CK
+  // Streams CK
   {
     n: 8,
     power: .4,
@@ -120,7 +120,7 @@ Acko.TrackData = [
     smooth: 4,
     up: _v(0, 1, 2.3),
     detail: 8,
-    color: Acko.Palette.platinum[2],
+    color: Streams.Palette.platinum[2],
     distance: 3300,
     castAO: .95,
     receiveAO: .85,
@@ -162,7 +162,7 @@ Acko.TrackData = [
     smooth: 4,
     up: _v(0, 1, 2.3),
     detail: 8,
-    color: Acko.Palette.red[1],
+    color: Streams.Palette.red[1],
     distance: 3300,
     castAO: false,
     AOStep: 35,
@@ -170,7 +170,7 @@ Acko.TrackData = [
     truncate: 30,
   },
 
-  // Acko KO
+  // Streams KO
   {
     n: 8,
     power: .4,
@@ -211,7 +211,7 @@ Acko.TrackData = [
     smooth: 4,
     up: _v(.45, 0, 1),
     detail: 8,
-    color: Acko.Palette.platinum[2],
+    color: Streams.Palette.platinum[2],
     distance: 3300 * .45,
     castAO: .85,
     receiveAO: .85,
@@ -261,7 +261,7 @@ Acko.TrackData = [
     smooth: 4,
     up: _v(.45, 0, 1),
     detail: 8,
-    color: Acko.Palette.red[2],
+    color: Streams.Palette.red[2],
     distance: 3300 * .45,
     speed: 600 * .45,
     castAO: false,
@@ -308,7 +308,7 @@ Acko.TrackData = [
     smooth: 4,
     up: _v(-1, 0, 0),
     detail: 8,
-    color: Acko.Palette.slate[0],
+    color: Streams.Palette.slate[0],
     AOStep: 35,
     simplify: false,
     receiveAO: .85,
@@ -352,7 +352,7 @@ Acko.TrackData = [
     smooth: 4,
     up: _v(-1, 0, .4),
     detail: 8,
-    color: Acko.Palette.slate[0],
+    color: Streams.Palette.slate[0],
     simplify: false,
     receiveAO: .85,
     castAO: .85,
@@ -400,7 +400,7 @@ Acko.TrackData = [
     castAO: .9,
     up: _v(-.1, 0, 1),
     detail: 8,
-    color: Acko.Palette.blue[1],
+    color: Streams.Palette.blue[1],
   },
 
   // Blue ribbon 2
@@ -452,7 +452,7 @@ Acko.TrackData = [
     castAO: 1.2,
     up: _v(0, .2, 1),
     detail: 8,
-    color: Acko.Palette.blue[0],
+    color: Streams.Palette.blue[0],
   },
 
   // Slate ribbon 1
@@ -497,7 +497,7 @@ Acko.TrackData = [
     smooth: 8,
     up: _v(0, -.3, 1),
     detail: 8,
-    color: Acko.Palette.slate[0],
+    color: Streams.Palette.slate[0],
   },
 
   // Slate ribbon 2
@@ -539,7 +539,7 @@ Acko.TrackData = [
     smooth: 8,
     up: _v(0, -.3, 1),
     detail: 8,
-    color: Acko.Palette.slate[1],
+    color: Streams.Palette.slate[1],
   },
 
   // Orange ribbon
@@ -578,7 +578,7 @@ Acko.TrackData = [
     smooth: 8,
     up: _v(0, 1, -1.5),
     detail: 8,
-    color: Acko.Palette.red[2],
+    color: Streams.Palette.red[2],
   },
 
   // Platinum ribbon
@@ -626,13 +626,13 @@ Acko.TrackData = [
     receiveAO: .9,
     up: _v(-.69, 0, 1),
     detail: 8,
-    color: Acko.Palette.platinum[1],
+    color: Streams.Palette.platinum[1],
   },
 
   // Background tube
   {
     n: 16,
-    power: .5,
+    power: 0,
     width: 1,
     height: 1,/*
     width: 80,
@@ -649,7 +649,7 @@ Acko.TrackData = [
     smooth: 0,
     up: _v(0, 1, 1),
     detail: 16,
-    color: Acko.Palette.platinum[1],
+    color: Streams.Palette.platinum[1],
     warp: false,
     speed: 1200,
     distance: 5800,
@@ -660,7 +660,7 @@ Acko.TrackData = [
   // Background tube
   {
     n: 16,
-    power: .5,
+    power: 0,
     width: 1,
     height: 1,/*
     width: 40,
@@ -677,7 +677,7 @@ Acko.TrackData = [
     smooth: 0,
     up: _v(0, 1, 1),
     detail: 16,
-    color: Acko.Palette.platinum[1],
+    color: Streams.Palette.platinum[1],
     warp: false,
     speed: 1200,
     distance: 5800,
@@ -702,7 +702,7 @@ Acko.TrackData = [
     smooth: 0,
     up: _v(0, 1, 1),
     detail: 16,
-    color: Acko.Palette.platinum[1],
+    color: Streams.Palette.platinum[1],
     warp: false,
     castAO: false,
     receiveAO: false,
@@ -726,7 +726,7 @@ Acko.TrackData = [
     smooth: 0,
     up: _v(0, 1, 1),
     detail: 16,
-    color: Acko.Palette.platinum[1],
+    color: Streams.Palette.platinum[1],
     warp: false,
     castAO: false,
     receiveAO: false,
@@ -750,7 +750,7 @@ Acko.TrackData = [
     smooth: 0,
     up: _v(0, 1, 1),
     detail: 16,
-    color: Acko.Palette.platinum[1],
+    color: Streams.Palette.platinum[1],
     warp: false,
     castAO: false,
     receiveAO: false,
@@ -774,7 +774,7 @@ Acko.TrackData = [
     smooth: 0,
     up: _v(0, .7, 1),
     detail: 16,
-    color: Acko.Palette.platinum[1],
+    color: Streams.Palette.platinum[1],
     warp: false,
     castAO: false,
     receiveAO: false,

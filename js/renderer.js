@@ -1,4 +1,4 @@
-Acko.Renderer = function (options) {
+Streams.Renderer = function (options) {
   options = options || {};
 
   this.parameters = options.parameters || {};
@@ -40,7 +40,7 @@ Acko.Renderer = function (options) {
   });
 }
 
-Acko.Renderer.prototype = {
+Streams.Renderer.prototype = {
 
   init: function () {
 
@@ -80,7 +80,7 @@ Acko.Renderer.prototype = {
     _.each(effects, function (effect) {
       effect.build(exports);
     });
-    tock(this.type.toUpperCase() +' effect build');
+    tock(this.type.toUpperCase() + ' effect build');
 
     this.resize();
   },

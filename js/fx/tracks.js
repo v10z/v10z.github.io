@@ -1,5 +1,5 @@
-Acko.Effect.Tracks = function () {
-  Acko.Effect.call(this);
+Streams.Effect.Tracks = function () {
+  Streams.Effect.call(this);
 
   this.order = 1;
   this.group = null;
@@ -13,7 +13,7 @@ Acko.Effect.Tracks = function () {
   this.blackholeA = 0;
   this.blackholeB = 0;
 
-  this.trackData = Acko.TrackData;
+  this.trackData = Streams.TrackData;
 };
 
 (function (tr) {
@@ -33,7 +33,7 @@ var v11 = _v();
 
 var m1 = new THREE.Matrix4();
 
-tr.prototype = _.extend(new Acko.Effect(), {
+tr.prototype = _.extend(new Streams.Effect(), {
 
   build: function (exports) {
     exports.tracks = this;
@@ -101,8 +101,8 @@ tr.prototype = _.extend(new Acko.Effect(), {
     if (!this.tracks.length) return;
 
     // Load pre-bake
-    if (Acko.AOData) {
-      this.importAO(Acko.AOData);
+    if (Streams.AOData) {
+      this.importAO(Streams.AOData);
     }
     else {
       this.AO = new tr.AmbientOcclusion();
@@ -280,7 +280,7 @@ tr.prototype = _.extend(new Acko.Effect(), {
   prepareMesh: function () {
 
     // Visible pass
-    var shader = Acko.TrackShader;
+    var shader = Streams.TrackShader;
     var material = this.material = new THREE.ShaderMaterial(shader);
     material.uniforms.tGeometry.value = this.textureObject;
     material.uniforms.sampleStep.value.set(1 / this.width, 1 / this.height);
@@ -501,7 +501,7 @@ tr.prototype = _.extend(new Acko.Effect(), {
     var skeletonLine = new THREE.Line(
       skeletonGeometry,
       new THREE.LineBasicMaterial({
-        color: Acko.Palette.blue[1],
+        color: Streams.Palette.blue[1],
         linewidth: 2,
       }));
     skeletonLine.renderDepth = 1;
@@ -510,7 +510,7 @@ tr.prototype = _.extend(new Acko.Effect(), {
     var curveLine = new THREE.Line(
       curveGeometry,
       new THREE.LineBasicMaterial({
-        color: Acko.Palette.blue[0],
+        color: Streams.Palette.blue[0],
         linewidth: 2,
       }));
     curveLine.renderDepth = 3;
@@ -519,7 +519,7 @@ tr.prototype = _.extend(new Acko.Effect(), {
     var normalLine = new THREE.Line(
       normalGeometry,
       new THREE.LineBasicMaterial({
-        color: Acko.Palette.platinum[0],
+        color: Streams.Palette.platinum[0],
         linewidth: 1,
       }));
     normalLine.renderDepth = 4;
@@ -537,7 +537,7 @@ tr.prototype = _.extend(new Acko.Effect(), {
   },
 
   exportDiscs: function () {
-    var object = makeDiscs(this.tracks, Acko.Palette.blue[1], Acko.Palette.blue[0]);
+    var object = makeDiscs(this.tracks, Streams.Palette.blue[1], Streams.Palette.blue[0]);
     return {
       object: object,
       width: 960,
@@ -872,7 +872,7 @@ tr.Track.prototype = {
     var ns = this.nSegments;
     var map = this.lengthMap;
 
-    var flip = (Acko.ReverseTracks ? -1 : 1);
+    var flip = (Streams.ReverseTracks ? -1 : 1);
 
     if (this.distance) {
       // Arrival animation
@@ -1435,7 +1435,7 @@ tr.Disc = function (position, normal, radius, absorption) {
 function toDepthMaterial(material) {
   var m = material.clone();
   m.fragmentShader = THREE.ShaderLib["depthRGBA"].fragmentShader;
-  m.vertexShader = Acko.TrackShader.depthVertexShader;
+  m.vertexShader = Streams.TrackShader.depthVertexShader;
   m.blending = THREE.NoBlending;
   m.transparent = true;
   m.uniforms = material.uniforms;
@@ -1729,9 +1729,9 @@ function makePath(points, defaultDetail, smooth, bank, up, relative, warp, sprin
       v4.normalize();
 
       var mat3 = new THREE.Matrix3(
-          c + v4.x*v4.x*(1 - c), v4.x*v4.y*(1 - c) - v4.z*s, v4.x*v4.z*(1 - c) + v4.y*s, 
-          v4.x*v4.y*(1 - c) + v4.z*s, c + v4.y*v4.y*(1 - c), v4.y*v4.z*(1 - c) - v4.x*s, 
-          v4.x*v4.z*(1 - c) - v4.y*s, v4.y*v4.z*(1 - c) + v4.x*s, c + v4.z*v4.z*(1 - c)//, 
+          c + v4.x*v4.x*(1 - c), v4.x*v4.y*(1 - c) - v4.z*s, v4.x*v4.z*(1 - c) + v4.y*s,
+          v4.x*v4.y*(1 - c) + v4.z*s, c + v4.y*v4.y*(1 - c), v4.y*v4.z*(1 - c) - v4.x*s,
+          v4.x*v4.z*(1 - c) - v4.y*s, v4.y*v4.z*(1 - c) + v4.x*s, c + v4.z*v4.z*(1 - c)//,
         );
 
       // Rotate normal
@@ -1988,6 +1988,6 @@ function makeDiscs(tracks, color, color2) {
   return group;
 }
 
-})(Acko.Effect.Tracks);
+})(Streams.Effect.Tracks);
 
-Acko.Effects.push(new Acko.Effect.Tracks());
+Streams.Effects.push(new Streams.Effect.Tracks());

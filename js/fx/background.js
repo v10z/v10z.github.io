@@ -1,5 +1,5 @@
-Acko.Effect.Background = function () {
-  Acko.Effect.call(this);
+Streams.Effect.Background = function () {
+  Streams.Effect.call(this);
 
   this.order = 0;
   this.group = null;
@@ -8,7 +8,7 @@ Acko.Effect.Background = function () {
   this.renderer = 'webgl';
 }
 
-Acko.Effect.Background.prototype = _.extend(new Acko.Effect(), {
+Streams.Effect.Background.prototype = _.extend(new Streams.Effect(), {
 
   build: function (exports) {
     exports.background = this;
@@ -18,7 +18,7 @@ Acko.Effect.Background.prototype = _.extend(new Acko.Effect(), {
     var group = this.group = new THREE.Object3D();
 
     var geometry = this.makeGeometry();
-    var material = this.material = new THREE.ShaderMaterial(Acko.SolidShader);
+    var material = this.material = new THREE.ShaderMaterial(Streams.SolidShader);
     var mesh = this.mesh = new THREE.Mesh(geometry, material);
 
     mesh.position.z = 0;
@@ -58,7 +58,7 @@ Acko.Effect.Background.prototype = _.extend(new Acko.Effect(), {
     var nsX = 8;
     var nsY = 4;
 
-    var nTris = nsX*(nsY+4)*2*n;
+    var nTris = nsX * (nsY + 4) * 2 * n;
     var nVerts = nTris * 3;
 
     // Geometry streamer
@@ -148,9 +148,9 @@ Acko.Effect.Background.prototype = _.extend(new Acko.Effect(), {
       return range[0] + rand() * (range[1] - range[0]);
     }
 
-    var colors = Acko.Palette.red.concat(Acko.Palette.blue);
+    var colors = Streams.Palette.red.concat(Streams.Palette.blue);
 
-    var cc = Acko.Palette.platinum[1];
+    var cc = Streams.Palette.platinum[1];
 
     // Seed random generator
     var seed = 773239;
@@ -189,10 +189,10 @@ Acko.Effect.Background.prototype = _.extend(new Acko.Effect(), {
 
       var gray = rand() * .2 + .6;
 
-//      gray = (i / n);
-//      cc = colors[i % colors.length];
+      //      gray = (i / n);
+      //      cc = colors[i % colors.length];
 
-      var color = {r:gray*cc.r, g:gray*cc.g, b:gray*cc.b};
+      var color = { r: gray * cc.r, g: gray * cc.g, b: gray * cc.b };
 
       var c = Math.cos(radial);
       var s = Math.sin(radial);
@@ -284,17 +284,17 @@ Acko.Effect.Background.prototype = _.extend(new Acko.Effect(), {
       v1.set(0, 0, 0);
       m2.makeFromPositionEulerScale(v1, v2, 'ZXY', v3);
 
-      var stepX = τ/nsX;
-      var stepY = π/nsY;
+      var stepX = τ / nsX;
+      var stepY = π / nsY;
 
       var edge = nsX - 1;
 
       // Body
-      for (var y = 0, th = -π/2+stepY/2; y < nsY; ++y, th += stepY) {
+      for (var y = 0, th = -π / 2 + stepY / 2; y < nsY; ++y, th += stepY) {
         var ct = Math.cos(th);
         var st = Math.sin(th);
 
-        for (var x = 0, phi = stepX/2; x < nsX; ++x, phi += stepX) {
+        for (var x = 0, phi = stepX / 2; x < nsX; ++x, phi += stepX) {
           c = Math.cos(phi);
           s = Math.sin(phi);
 
@@ -336,8 +336,8 @@ Acko.Effect.Background.prototype = _.extend(new Acko.Effect(), {
       ];
 
       // Top
-      c = Math.cos(stepY/2);
-      s = Math.sin(stepY/2);
+      c = Math.cos(stepY / 2);
+      s = Math.sin(stepY / 2);
       corners.forEach(function (corner) {
         v1.set(0, borderRadius, 0);
         v2.set(sx * corner[0], sy, sz * corner[1]);
@@ -364,8 +364,8 @@ Acko.Effect.Background.prototype = _.extend(new Acko.Effect(), {
       ignore || quad(0, 1, 3, 2);
 
       // Bottom
-      c = Math.cos(stepY/2);
-      s = Math.sin(stepY/2);
+      c = Math.cos(stepY / 2);
+      s = Math.sin(stepY / 2);
       corners.forEach(function (corner) {
         v1.set(0, -borderRadius, 0);
         v2.set(sx * corner[0], -sy, sz * corner[1]);
@@ -377,7 +377,7 @@ Acko.Effect.Background.prototype = _.extend(new Acko.Effect(), {
       });
 
       var arc = nsX / 4;
-      var o = nsX*nsY;
+      var o = nsX * nsY;
       for (var x = 0; x < nsX; ++x) {
         if (x % arc == 0) continue;
         ignore || triangle(4 + Math.floor(x / arc), x - o, x - 1 - o);
@@ -427,7 +427,7 @@ Acko.Effect.Background.prototype = _.extend(new Acko.Effect(), {
       this.opacity += .003;
     }
 
-    var opacity = .5 - .5*Math.cos(Math.min(1, Math.max(0, this.opacity)) * π);
+    var opacity = .5 - .5 * Math.cos(Math.min(1, Math.max(0, this.opacity)) * π);
     this.material.uniforms.opacity.value = opacity;
     this.material.uniforms.ambientCorrection.value = (exports.ambientCorrection || 0) + (exports.ride ? .3 : .6);
 
@@ -445,4 +445,4 @@ Acko.Effect.Background.prototype = _.extend(new Acko.Effect(), {
 
 });
 
-Acko.Effects.push(new Acko.Effect.Background());
+Streams.Effects.push(new Streams.Effect.Background());
