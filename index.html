@@ -50,7 +50,9 @@
     <script type="text/javascript" src="js/lib/three/TexturePass.js"></script>
     <script type="text/javascript" src="js/lib/three/ThreeRTT.js"></script>
     <script type="text/javascript" src="js/lib/three/Stats.js"></script>
-    <script type="text/javascript" src="js/lib/three/RoundRectGeometry.js"></script>
+    <script type="text/javascript" src="js/lib/three/RoundRectGeometry.js">
+    </script>
+    <script type="text/javascript" src="js/lib/paraview.js"></script>
 
     <script type="text/javascript" src="js/common.js"></script>
     <script type="text/javascript" src="js/time.js"></script>
@@ -68,7 +70,6 @@
 
     <script type="text/javascript" src="js/models/tracks.js"></script>
     <script type="text/javascript" src="js/models/camera.js"></script>
-    <script type="text/javascript" src="js/models/ao.js"></script>
 
     <script type="text/javascript" src="js/fx/effect.js"></script>
     <script type="text/javascript" src="js/fx/camera.js"></script>
@@ -108,12 +109,13 @@
       </div>
     </div>
 
-
     <div id="native-frame">
       <div class="container">
-        <button class="action action--open" aria-label="Open Menu"><span class="icon icon--menu"></span></button>
+        <button class="action action--open" aria-label="Open Menu"><span
+            class="icon icon--menu">::before</span></button>
         <nav id="ml-menu" class="menu">
-          <button class="action action--close" aria-label="Close Menu"><span class="icon icon--cross"></span></button>
+          <button class="action action--close" aria-label="Close Menu"><span
+              class="icon icon--cross">::before</span></button>
           <div class="menu__wrap">
             <ul data-menu="main" class="menu__level" tabindex="-1" role="menu" aria-label="home">
               <li class="menu__item" role="menuitem"><a class="menu__link" data-submenu="submenu-1"
@@ -136,10 +138,11 @@
             <!-- Submenu 1-1 -->
             <ul data-menu="submenu-1-1" id="submenu-1-1" class="menu__level" tabindex="-1" role="menu"
               aria-label="gallery">
-              <li class="menu__item" role="menuitem"><a class="menu__link" href="#">miscellaneous</a></li>
+              <li class="menu__item" role="link"><a class="menu__link" href="#">miscellaneous</a>
+              </li>
             </ul>
             <!-- Submenu 2 -->
-            <ul data-menu="submenu-2" id="submenu-2" class="menu__level" tabindex="-1" role="menu" aria-label="Fruits">
+            <ul data-menu=" submenu-2" id="submenu-2" class="menu__level" tabindex="-1" role="menu" aria-label="Fruits">
               <li class="menu__item" role="menuitem"><a class="menu__link" href="#">summary</a></li>
               <li class="menu__item" role="menuitem"><a class="menu__link" data-submenu="submenu-2-1"
                   aria-owns="submenu-2-1" href="#">by city</a></li>
@@ -201,7 +204,7 @@
             Science has always been my passion, from spending days buried in encyclopedias as a child to pursuing a
             Ph.D. I share some of my formal pursuits (publications, theses) as well as short notes and
             informal texts on topics from mathematics and science in the research section. Herein one can also find a
-            section on scientific computing and basic programming in C++ together with sample codes.
+            section on scientific computing and basic programming together with sample codes.
           </p>
 
           <p>
@@ -215,7 +218,6 @@
         </div>
       </div>
     </div>
-
     <script src="js/classie.js"></script>
     <script src="js/main2.js"></script>
     <script src="js/anotherscript.js"></script>
