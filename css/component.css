@@ -42,7 +42,7 @@
 	left: 0;
 	width: 250px;
 	height: calc(100vh - 120px);
-	background: #ffffff00;
+	background: white;
 }
 
 .menu__wrap {
@@ -103,7 +103,7 @@
 .menu__link:focus,
 .menu__link[data-submenu]:hover::after,
 .menu__link[data-submenu]:focus::after {
-	color: #0f12aa;
+	color: #1562b9;
 }
 
 .menu__link--current::before {
@@ -278,7 +278,7 @@
 	cursor: pointer;
 	color: #2a2b30;
 	border: none;
-	background: none;
+	background: white;
 }
 
 .menu__back--hidden {
@@ -302,7 +302,7 @@
 	padding: 0;
 	cursor: pointer;
 	border: none;
-	background: none;
+	background: rgb(255, 255, 255);
 }
 
 .action:focus {
@@ -314,7 +314,7 @@
 	top: 1em;
 	left: 1em;
 	display: none;
-	color: #fff;
+	color: rgb(0, 0, 0);
 	position: fixed;
 	z-index: 1000;
 }
@@ -324,7 +324,7 @@
 	top: 1.25em;
 	right: 1em;
 	display: none;
-	color: #45464e;
+	color: #000000;
 }
 
 @media screen and (max-width: 40em) {
