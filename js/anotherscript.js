@@ -36,7 +36,7 @@
     classie.add(gridWrapper, 'content--loading');
     setTimeout(function () {
       classie.remove(gridWrapper, 'content--loading');
-      gridWrapper.innerHTML = '<ul class="products">' + dummyData[itemName] + '<ul>';
+      gridWrapper.innerHTML = '';
     }, 700);
   }
 })();
