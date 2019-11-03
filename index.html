@@ -110,93 +110,99 @@
     </div>
 
     <div id="native-frame">
-      <div class="container">
-        <button class="action action--open" aria-label="Open Menu"><span
-            class="icon icon--menu">::before</span></button>
-        <nav id="ml-menu" class="menu">
-          <button class="action action--close" aria-label="Close Menu"><span
-              class="icon icon--cross">::before</span></button>
-          <div class="menu__wrap">
-            <ul data-menu="main" class="menu__level" tabindex="-1" role="menu" aria-label="home">
-              <li class="menu__item" role="menuitem"><a class="menu__link" data-submenu="submenu-1"
-                  aria-owns="submenu-1" href="#">photography</a></li>
-              <li class="menu__item" role="menuitem"><a class="menu__link" data-submenu="submenu-2"
-                  aria-owns="submenu-2" href="#">travel logs</a></li>
-              <li class="menu__item" role="menuitem"><a class="menu__link" data-submenu="submenu-3"
-                  aria-owns="submenu-3" href="#">maths &amp; science</a></li>
-              <li class="menu__item" role="menuitem"><a class="menu__link" data-submenu="submenu-4"
-                  aria-owns="submenu-4" href="#">literature</a></li>
-            </ul>
-            <!-- Submenu 1 -->
-            <ul data-menu="submenu-1" id="submenu-1" class="menu__level" tabindex="-1" role="menu"
-              aria-label="Vegetables">
-              <li class="menu__item" role="menuitem"><a class="menu__link" href="#">introduction</a></li>
-              <li class="menu__item" role="menuitem"><a class="menu__link" href="#">tips &amp; tricks </a></li>
-              <li class="menu__item" role="menuitem"><a class="menu__link" data-submenu="submenu-1-1"
-                  aria-owns="submenu-1-1" href="#">gallery</a></li>
-            </ul>
-            <!-- Submenu 1-1 -->
-            <ul data-menu="submenu-1-1" id="submenu-1-1" class="menu__level" tabindex="-1" role="menu"
-              aria-label="gallery">
-              <li class="menu__item" role="link"><a class="menu__link" href="#">miscellaneous</a>
-              </li>
-            </ul>
-            <!-- Submenu 2 -->
-            <ul data-menu=" submenu-2" id="submenu-2" class="menu__level" tabindex="-1" role="menu" aria-label="Fruits">
-              <li class="menu__item" role="menuitem"><a class="menu__link" href="#">summary</a></li>
-              <li class="menu__item" role="menuitem"><a class="menu__link" data-submenu="submenu-2-1"
-                  aria-owns="submenu-2-1" href="#">by city</a></li>
-            </ul>
-            <!-- Submenu 2-1 -->
-            <ul data-menu="submenu-2-1" id="submenu-2-1" class="menu__level" tabindex="-1" role="menu"
-              aria-label="by city">
-              <li class="menu__item" role="menuitem"><a class="menu__link" href="#">new york</a></li>
-            </ul>
-            <!-- Submenu 3 -->
-            <ul data-menu="submenu-3" id="submenu-3" class="menu__level" tabindex="-1" role="menu"
-              aria-label="math &amp; science">
-              <li class="menu__item" role="menuitem"><a class="menu__link" href="#">mathematics</a></li>
-              <li class="menu__item" role="menuitem"><a class="menu__link" href="#">computer programming</a></li>
-              <li class="menu__item" role="menuitem"><a class="menu__link" href="#">science</a></li>
-              <li class="menu__item" role="menuitem"><a class="menu__link" href="#">research</a></li>
-              <li class="menu__item" role="menuitem"><a class="menu__link" href="#">tinkerings</a></li>
-              <li class="menu__item" role="menuitem"><a class="menu__link" data-submenu="submenu-3-1"
-                  aria-owns="submenu-3-1" href="#">codes</a></li>
-            </ul>
-            <!-- Submenu 3-1 -->
-            <ul data-menu="submenu-3-1" id="submenu-3-1" class="menu__level" tabindex="-1" role="menu"
-              aria-label="codes">
-              <li class="menu__item" role="menuitem"><a class="menu__link" href="#">fractal generator</a></li>
-            </ul>
-            <!-- Submenu 4 -->
-            <ul data-menu="submenu-4" id="submenu-4" class="menu__level" tabindex="-1" role="menu"
-              aria-label="literature">
-              <li class="menu__item" role="menuitem"><a class="menu__link" href="#">fiction</a></li>
-              <li class="menu__item" role="menuitem"><a class="menu__link" data-submenu="submenu-4-1"
-                  aria-owns="submenu-4-1" href="#">non-fiction</a></li>
-            </ul>
-            <!-- Submenu 4-1 -->
-            <ul data-menu="submenu-4-1" id="submenu-4-1" class="menu__level" tabindex="-1" role="menu"
-              aria-label="non-fiction">
-              <li class="menu__item" role="menuitem"><a class="menu__link" href="#">philosophy</a></li>
-              <li class="menu__item" role="menuitem"><a class="menu__link" href="#">science</a></li>
-            </ul>
-          </div>
-        </nav>
-      </div>
       <div class="grid">
         <div class="g10 i3">
-          <h1>about me</h1>
+          <div class="container">
+            <button class="action action--open" aria-label="Open Menu"><span class="icon icon--menu"> </span></button>
+            <nav id="ml-menu" class="menu">
+              <button class="action action--close" aria-label="Close Menu"><span class="icon icon--cross">
+                </span></button>
+              <div class="menu__wrap">
+                <ul data-menu="main" class="menu__level" tabindex="-1" role="menu" aria-label="home">
+                  <li class="menu__item" role="menuitem"><a class="menu__link" data-submenu="submenu-1"
+                      aria-owns="submenu-1" href="#">photography</a></li>
+                  <li class="menu__item" role="menuitem"><a class="menu__link" data-submenu="submenu-2"
+                      aria-owns="submenu-2" href="#">travel logs</a></li>
+                  <li class="menu__item" role="menuitem"><a class="menu__link" data-submenu="submenu-3"
+                      aria-owns="submenu-3" href="#">maths &amp; science</a></li>
+                  <li class="menu__item" role="menuitem"><a class="menu__link" data-submenu="submenu-4"
+                      aria-owns="submenu-4" href="#">literature</a></li>
+                </ul>
+                <!-- Submenu 1 -->
+                <ul data-menu="submenu-1" id="submenu-1" class="menu__level" tabindex="-1" role="menu"
+                  aria-label="Vegetables">
+                  <li class="menu__item" role="menuitem"><a class="menu__link" href="#">introduction</a></li>
+                  <li class="menu__item" role="menuitem"><a class="menu__link" href="#">tips &amp; tricks </a></li>
+                  <li class="menu__item" role="menuitem"><a class="menu__link" data-submenu="submenu-1-1"
+                      aria-owns="submenu-1-1" href="#">gallery</a></li>
+                </ul>
+                <!-- Submenu 1-1 -->
+                <ul data-menu="submenu-1-1" id="submenu-1-1" class="menu__level" tabindex="-1" role="menu"
+                  aria-label="gallery">
+                  <li class="menu__item" role="link"><a class="menu__link" href="#">miscellaneous</a>
+                  </li>
+                </ul>
+                <!-- Submenu 2 -->
+                <ul data-menu=" submenu-2" id="submenu-2" class="menu__level" tabindex="-1" role="menu"
+                  aria-label="Fruits">
+                  <li class="menu__item" role="menuitem"><a class="menu__link" href="#">summary</a></li>
+                  <li class="menu__item" role="menuitem"><a class="menu__link" data-submenu="submenu-2-1"
+                      aria-owns="submenu-2-1" href="#">by city</a></li>
+                </ul>
+                <!-- Submenu 2-1 -->
+                <ul data-menu="submenu-2-1" id="submenu-2-1" class="menu__level" tabindex="-1" role="menu"
+                  aria-label="by city">
+                  <li class="menu__item" role="menuitem"><a class="menu__link" href="#">new york</a></li>
+                </ul>
+                <!-- Submenu 3 -->
+                <ul data-menu="submenu-3" id="submenu-3" class="menu__level" tabindex="-1" role="menu"
+                  aria-label="math &amp; science">
+                  <li class="menu__item" role="menuitem"><a class="menu__link" href="#">mathematics</a></li>
+                  <li class="menu__item" role="menuitem"><a class="menu__link" href="#">computer programming</a></li>
+                  <li class="menu__item" role="menuitem"><a class="menu__link" href="#">science</a></li>
+                  <li class="menu__item" role="menuitem"><a class="menu__link" href="#">research</a></li>
+                  <li class="menu__item" role="menuitem"><a class="menu__link" href="#">tinkerings</a></li>
+                  <li class="menu__item" role="menuitem"><a class="menu__link" data-submenu="submenu-3-1"
+                      aria-owns="submenu-3-1" href="#">codes</a></li>
+                </ul>
+                <!-- Submenu 3-1 -->
+                <ul data-menu="submenu-3-1" id="submenu-3-1" class="menu__level" tabindex="-1" role="menu"
+                  aria-label="codes">
+                  <li class="menu__item" role="menuitem"><a class="menu__link" href="#">fractal generator</a></li>
+                </ul>
+                <!-- Submenu 4 -->
+                <ul data-menu="submenu-4" id="submenu-4" class="menu__level" tabindex="-1" role="menu"
+                  aria-label="literature">
+                  <li class="menu__item" role="menuitem"><a class="menu__link" href="#">fiction</a></li>
+                  <li class="menu__item" role="menuitem"><a class="menu__link" data-submenu="submenu-4-1"
+                      aria-owns="submenu-4-1" href="#">non-fiction</a></li>
+                </ul>
+                <!-- Submenu 4-1 -->
+                <ul data-menu="submenu-4-1" id="submenu-4-1" class="menu__level" tabindex="-1" role="menu"
+                  aria-label="non-fiction">
+                  <li class="menu__item" role="menuitem"><a class="menu__link" href="#">philosophy</a></li>
+                  <li class="menu__item" role="menuitem"><a class="menu__link" href="#">science</a></li>
+                </ul>
+              </div>
+            </nav>
+          </div>
+        </div>
+        <div class="g9 i4">
+          <p> &ensp; </p>
+          <h1>about</h1>
           <p>My name is Vidyasagar and I am an avid traveller, photographer and
             scientist. I hope to share my experiences, thoughts, knowledge and skills through this repository. My
             background will give further context to the sections seen on the left.</p>
 
           <p>I was born in India, and my family relocated to Singapore when I was an infant. At the age of 18, I moved
-            to England to pursue my undergraduate studies. Subsequently, I continued my graduate studies in California,
-            during which time I spent a year in Switzerland. During these years, I have travelled to over 200 cities in
+            to England to pursue my undergraduate studies. Subsequently, I continued my graduate studies in
+            California,
+            during which time I spent a year in Switzerland. During these years, I have travelled to over 200 cities
+            in
             25 countries - and more recently began logging my various travels.</p>
 
-          <p> In recent years I developed an interest in photography, and I have added some of the finer pictures in the
+          <p> In recent years I developed an interest in photography, and I have added some of the finer pictures in
+            the
             gallery section. I also share photography tips from a scientific perspective that I have learnt over
             the years.</p>
 
@@ -208,7 +214,8 @@
           </p>
 
           <p>
-            Whilst I do not consider myself as a literary expert, some of my thoughts and reviews of books and articles
+            Whilst I do not consider myself as a literary expert, some of my thoughts and reviews of books and
+            articles
             (ranging across subjects) can be found in the literary section.
           </p>
 
@@ -216,6 +223,7 @@
               here</a>.
           </p>
         </div>
+
       </div>
     </div>
     <script src="js/classie.js"></script>
