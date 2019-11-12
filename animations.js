@@ -35,7 +35,7 @@ function init() {
     bevelSize = .15,
     bevelEnabled = true; // normal bold
 
-  loader.load('./node_modules/three/examples/fonts/optimer_regular.typeface.json', function (font) {
+  loader.load('https://github.com/v10z/v10z.github.io/tree/master/node_modules/three/examples/fonts/optimer_regular.typeface.json', function (font) {
     textGeo = new THREE.TextGeometry(text, {
       font: font,
       size: size,
@@ -204,7 +204,7 @@ function init() {
   scene.add(mesh7);
 
 
-  stlloader.load('./stl/spin.stl', function (geometry9) {
+  stlloader.load('https://github.com/v10z/v10z.github.io/tree/master/stl/spin.stl', function (geometry9) {
     var material9 = new THREE.MeshPhysicalMaterial({ reflectivity: 0.1, clearcoatRoughness: 0.1, color: "rgb(255,215,0)" });
     var mesh9 = new THREE.Mesh(geometry9, material9);
     mesh9.position.set(28, 15, -30);
@@ -213,10 +213,6 @@ function init() {
     mesh9.rotateSpeed = 0.1;
     scene.add(mesh9);
   });
-
-
-
-
 
   // Texture Loader
   let textureLoader = new THREE.TextureLoader();
@@ -359,9 +355,9 @@ function init() {
         shininess: 200
       },
       textures: {
-        map: './images/earthmap1k.jpg',
-        bumpMap: './images/earthbump1k.jpg',
-        specularMap: './images/earthspec1k.jpg'
+        map: 'https://github.com/v10z/v10z.github.io/tree/master/images/earthmap1k.jpg',
+        bumpMap: 'https://github.com/v10z/v10z.github.io/tree/master/images/earthbump1k.jpg',
+        specularMap: 'https://github.com/v10z/v10z.github.io/tree/master/images/earthspec1k.jpg'
       }
     },
     atmosphere: {
@@ -370,8 +366,8 @@ function init() {
         opacity: 0.9
       },
       textures: {
-        map: './images/earthcloudmap.jpg',
-        alphaMap: './images/earthcloudmaptrans.jpg'
+        map: 'https://github.com/v10z/v10z.github.io/tree/master/images/earthcloudmap.jpg',
+        alphaMap: 'https://github.com/v10z/v10z.github.io/tree/master/images/earthcloudmaptrans.jpg'
       },
       glow: {
         size: 0.1,
