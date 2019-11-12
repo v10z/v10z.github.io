@@ -1,10 +1,8 @@
 import * as THREE from "./node_modules/three/build/three.module.js";
-import Stats from './node_modules/three/examples/jsm/libs/stats.module.js';
-import { GeometryUtils } from './node_modules/three/examples/jsm/utils/GeometryUtils.js';
 import { OrbitControls } from './node_modules/three/examples/jsm/controls/OrbitControls.js';
 import { STLLoader } from './node_modules/three/examples/jsm/loaders/STLLoader.js';
 THREE.Cache.enabled = true;
-var scene, renderer, camera, controls, cube, lines, light, textMesh, textGeo, geometry, material, t, stats, scale, path3, geometry3,
+var scene, renderer, camera, controls, light, textMesh, textGeo, geometry, material, t, stats, scale, path3, geometry3,
   material3, path4, geometry4, mesh3, mesh4, path5, path6, mesh5, mesh6, geometry5, geometry6, material5, path7, path8, mesh8, mesh7, geometry7, geometry8, material6, material9, mesh9;
 t = 0; var loader = new THREE.FontLoader(); scale = 0; var lod = new THREE.LOD(); lod.update = false; var stlloader = new STLLoader();
 
@@ -52,7 +50,7 @@ function init() {
     pointLight.position.set(10, 100, 900); scene.add(pointLight);
     /* pointLight.color.setHSL(Math.random(), 1, 0.5); */
 
-    var textMaterial = new THREE.MeshPhysicalMaterial({ clearCoat: (0.5), color: "rgb(0, 100,256)", opacity: 1, transparent: false });
+    var textMaterial = new THREE.MeshPhysicalMaterial({ color: "rgb(0, 100,256)", opacity: 1, transparent: false });
     var textMesh = new THREE.Mesh(textGeo, textMaterial);
     textMesh.position.set(25, -12, 8);
 
@@ -207,7 +205,7 @@ function init() {
 
 
   stlloader.load('./stl/spin.stl', function (geometry9) {
-    var material9 = new THREE.MeshPhysicalMaterial({ reflectivity: 0.1, clearcoatRoughness: 0.1, color: "rgb(255,215,0)", specular: "rgb(256,256,256)", shininess: 0 });
+    var material9 = new THREE.MeshPhysicalMaterial({ reflectivity: 0.1, clearcoatRoughness: 0.1, color: "rgb(255,215,0)"});
     var mesh9 = new THREE.Mesh(geometry9, material9);
     mesh9.position.set(28, 15, -30);
     mesh9.rotation.set(0, 0, 0);
@@ -436,5 +434,5 @@ function animate() {
   else if (t < 7.5) {
     camera.position.x += Math.cos(t) / 2;
   }
-  stats.update();
+  /*   stats.update(); */
 }
