@@ -1,6 +1,10 @@
+import * as THREE from "./node_modules/three/build/three.module.js";
+import { OrbitControls } from './node_modules/three/examples/jsm/controls/OrbitControls.js';
+import { STLLoader } from './node_modules/three/examples/jsm/loaders/STLLoader.js';
+THREE.Cache.enabled = true;
 var scene, renderer, camera, controls, light, textMesh, textGeo, geometry, material, t, stats, scale, path3, geometry3,
   material3, path4, geometry4, mesh3, mesh4, path5, path6, mesh5, mesh6, geometry5, geometry6, material5, path7, path8, mesh8, mesh7, geometry7, geometry8, material6, material9, mesh9;
-t = 0; var loader = new THREE.FontLoader(); scale = 0; var lod = new THREE.LOD(); lod.update = false; var stlloader = new THREE.STLLoader();
+t = 0; var loader = new THREE.FontLoader(); scale = 0; var lod = new THREE.LOD(); lod.update = false; var stlloader = new STLLoader();
 
 init();
 
@@ -62,7 +66,7 @@ function init() {
           camera.lookAt(new THREE.Vector3(-1, 1, 0)); */
 
   camera.position.set(-25, 25, 50);
-  controls = new THREE.OrbitControls(camera, renderer.domElement);
+  controls = new OrbitControls(camera, renderer.domElement);
   controls.enableZoom = false;
 
   controls.rotateSpeed = 1;
@@ -208,6 +212,10 @@ function init() {
     mesh9.rotateSpeed = 0.1;
     scene.add(mesh9);
   });
+
+
+
+
 
   // Texture Loader
   let textureLoader = new THREE.TextureLoader();
