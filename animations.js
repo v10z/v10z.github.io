@@ -1,6 +1,13 @@
 import * as THREE from "./node_modules/three/build/three.module.js";
 import { OrbitControls } from './node_modules/three/examples/jsm/controls/OrbitControls.js';
 import { STLLoader } from './node_modules/three/examples/jsm/loaders/STLLoader.js';
+var  image1=require('./images/earthmap1k.jpg');
+var  image2=require('./images/earthspec1k.jpg');
+var  image3=require('./images/earthcloudmaptrans.jpg');
+var  image4=require('./images/earthbump1k.jpg',);
+var  image5=require('./images/earthcloudmap.jpg');
+var json=require('./examples/fonts/optimer_regular.typeface.json')
+
 THREE.Cache.enabled = true;
 var scene, renderer, camera, controls, light, textMesh, textGeo, geometry, material, t, stats, scale, path3, geometry3,
   material3, path4, geometry4, mesh3, mesh4, path5, path6, mesh5, mesh6, geometry5, geometry6, material5, path7, path8, mesh8, mesh7, geometry7, geometry8, material6, material9, mesh9;
@@ -35,7 +42,7 @@ function init() {
     bevelSize = .15,
     bevelEnabled = true; // normal bold
 
-  loader.load('./node_modules/three/examples/fonts/optimer_regular.typeface.json', function (font) {
+  loader.load(json, function (font) {
     textGeo = new THREE.TextGeometry(text, {
       font: font,
       size: size,
@@ -43,7 +50,7 @@ function init() {
       curveSegments: curveSegments,
       bevelThickness: bevelThickness,
       bevelSize: bevelSize,
-      bevelEnabled: bevelEnabled
+      bevelEnabled: bevelEnableds
     });
     //textGeo.rotateX = Math.PI/2;
     const pointLight = new THREE.PointLight("rgb(256,256,256)", 1.5);
@@ -359,9 +366,9 @@ function init() {
         shininess: 200
       },
       textures: {
-        map: './images/earthmap1k.jpg',
-        bumpMap: './images/earthbump1k.jpg',
-        specularMap: './images/earthspec1k.jpg'
+        map: image1,
+        bumpMap: image4,
+        specularMap: image2
       }
     },
     atmosphere: {
@@ -370,8 +377,8 @@ function init() {
         opacity: 0.9
       },
       textures: {
-        map: './images/earthcloudmap.jpg',
-        alphaMap: './images/earthcloudmaptrans.jpg'
+        map: image5,
+        alphaMap: image3
       },
       glow: {
         size: 0.1,
