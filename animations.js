@@ -1,60 +1,46 @@
 import * as THREE from "./node_modules/three/build/three.module.js";
 import { OrbitControls } from './node_modules/three/examples/jsm/controls/OrbitControls.js';
-import { STLLoader } from './node_modules/three/examples/jsm/loaders/STLLoader.js';
+import { PLYLoader } from './node_modules/three/examples/jsm/loaders/PLYLoader.js';
+import { GLTFLoader } from './node_modules/three/examples/jsm/loaders/GLTFLoader.js';
+import { TrackballControls } from './node_modules/three/examples/jsm/controls/TrackballControls.js';
+import { PDBLoader } from './node_modules/three/examples/jsm/loaders/PDBLoader.js';
+import { CSS2DRenderer, CSS2DObject } from './node_modules/three/examples/jsm/renderers/CSS2DRenderer.js';
+var image1 = require('./images/earthmap1k.jpg');
+var image2 = require('./images/earthspec1k.jpg');
+var image3 = require('./images/earthcloudmaptrans.jpg');
+var image4 = require('./images/earthbump1k.jpg');
+var image5 = require('./images/earthcloudmap.jpg');
+
 THREE.Cache.enabled = true;
 var scene, renderer, camera, controls, light, textMesh, textGeo, geometry, material, t, stats, scale, path3, geometry3,
-  material3, path4, geometry4, mesh3, mesh4, path5, path6, mesh5, mesh6, geometry5, geometry6, material5, path7, path8, mesh8, mesh7, geometry7, geometry8, material6, material9, mesh9;
-t = 0; var loader = new THREE.FontLoader(); scale = 0; var lod = new THREE.LOD(); lod.update = false; var stlloader = new STLLoader();
-
+  material3, material16, mesh16, geometry16, path4, geometry4, mesh3, mesh4, path5, path6, mesh17, mesh6, geometry17, geometry6, material17, path7, path8, mesh8, mesh7, geometry7, geometry8, material6, material9, mesh9;
+t = 0; var loader = new THREE.FontLoader(); scale = 0; var lod = new THREE.LOD(); lod.update = false; var plyloader = new PLYLoader(); var GLTFloader = new GLTFLoader();
+var pdbloader = new PDBLoader(); var geo17copy, geo1copy, geo2copy, geo3copy, geo4copy;
 init();
 
 function init() {
-  renderer = new THREE.WebGLRenderer();
+  renderer = new THREE.WebGLRenderer({ alpha: true });
 
   //this is to get the correct pixel detail on portable devices
   renderer.setPixelRatio(window.devicePixelRatio);
 
   //and this sets the canvas' size.
-  renderer.setSize(window.innerWidth, 800);
+  renderer.autoClear = false;
+  renderer.setClearColor(0x000000, 0.0);
+  renderer.setSize(window.innerWidth, 700);
 
   document.body.appendChild(renderer.domElement);
 
   scene = new THREE.Scene();
-  scene.background = new THREE.Color("rgb(256,256,256)");
+  // scene.background = new THREE.Color("rgb(256,256,256)");
   light = new THREE.Light("rgb(256,256,256)", 1);
   light.position.set(15, 0, 35);
-  light.castShadow = false;
+  light.castShadow = true;
   scene.add(light);
+  const pointLight = new THREE.PointLight("rgb(256,256,256)", 0.5);
+  pointLight.position.set(100, 100, 100); scene.add(pointLight);
 
-  var text = "Vidyasagar, Ph.D.",
-    height = .05,
-    size = 5,
-    curveSegments = 10,
-    bevelThickness = .1,
-    bevelSize = .15,
-    bevelEnabled = true; // normal bold
-
-  loader.load('./node_modules/three/examples/fonts/optimer_regular.typeface.json', function (font) {
-    textGeo = new THREE.TextGeometry(text, {
-      font: font,
-      size: size,
-      height: height,
-      curveSegments: curveSegments,
-      bevelThickness: bevelThickness,
-      bevelSize: bevelSize,
-      bevelEnabled: bevelEnabled
-    });
-    //textGeo.rotateX = Math.PI/2;
-    const pointLight = new THREE.PointLight("rgb(256,256,256)", 1.5);
-    pointLight.position.set(10, 100, 900); scene.add(pointLight);
-    /* pointLight.color.setHSL(Math.random(), 1, 0.5); */
-
-    var textMaterial = new THREE.MeshPhysicalMaterial({ color: "rgb(0, 100,256)", opacity: 1, transparent: false });
-    var textMesh = new THREE.Mesh(textGeo, textMaterial);
-    textMesh.position.set(25, -12, 8);
-
-    scene.add(textMesh);
-  });
+  const ambiLight = new THREE.AmbientLight("rgb(256,256,256)", 0.75); scene.add(ambiLight);
 
   camera = new THREE.PerspectiveCamera(
     70,
@@ -62,20 +48,68 @@ function init() {
     .1,                                          //near clipping plane
     1000                                         //far clipping plane
   );
-  /*         camera.up = new THREE.Vector3(0, 1, 0);
-          camera.lookAt(new THREE.Vector3(-1, 1, 0)); */
-
-  camera.position.set(-25, 25, 50);
+  camera.up = new THREE.Vector3(0, 1, 0);
+  camera.lookAt(new THREE.Vector3(-10, 1, 0));
+  camera.position.x = -30;
+  camera.position.y = 60;
+  camera.position.z = 80;
   controls = new OrbitControls(camera, renderer.domElement);
   controls.enableZoom = false;
 
-  controls.rotateSpeed = 1;
+  controls.rotateSpeed = 1.5;
   controls.enableDamping = true;
   controls.dampingFactor = .05;
   window.addEventListener('resize', function () {
     camera.aspect = window.innerWidth / 800;
     camera.updateProjectionMatrix(); renderer.setSize(window.innerWidth, 800);
   }, false);
+  var glowMaterial1 = new THREE.ShaderMaterial({
+    reflectivity: 1,
+    refractionRatio: 0.95,
+    opacity: 0.95,
+    uniforms: {
+      'c': {
+        type: 'f',
+        value: .7
+      },
+      'p': {
+        type: 'f',
+        value: .4
+      },
+      glowColor: {
+        type: 'c',
+        value: new THREE.Color("rgb(255,255,255)")
+      },
+      viewVector: {
+        type: 'v3',
+        value: camera.position
+      }
+    },
+    vertexShader: `
+        uniform vec3 viewVector;
+        uniform float c;
+        uniform float p;
+        varying float intensity;
+        void main() {
+          vec3 vNormal = normalize( normalMatrix * normal );
+          vec3 vNormel = normalize( normalMatrix * viewVector );
+          intensity = pow( c - dot(vNormal, vNormel), p );
+          gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );
+        }`
+    ,
+    fragmentShader: `
+        uniform vec3 glowColor;
+        varying float intensity;
+        void main()
+        {
+          vec3 glow = glowColor * intensity;
+          gl_FragColor = vec4( glow, 1.0 );
+        }`
+    ,
+    side: THREE.BackSide,
+    blending: THREE.AdditiveBlending,
+    transparent: true
+  });
 
   function CustomSinCurve(scale) {
     THREE.Curve.call(this);
@@ -86,15 +120,15 @@ function init() {
   CustomSinCurve.prototype.constructor = CustomSinCurve;
 
   CustomSinCurve.prototype.getPoint = function (t) {
-    var tx = 15 * Math.sin(Math.PI * t - Math.PI / 2);
-    var ty = 4 + Math.sin(2 * Math.PI * t * 7);
-    var tz = -6 + 5 * Math.cos(2 * Math.PI * t);
+    var tx = 30 * Math.sin(Math.PI * t);
+    var ty = Math.sin(2 * Math.PI * t * 7);
+    var tz = -10 - 15 * Math.cos(2 * Math.PI * t) + Math.sin(14 * Math.PI * t);
     return new THREE.Vector3(tx, ty, tz).multiplyScalar(this.scale);
   };
 
   path3 = new CustomSinCurve(5);
   geometry3 = new THREE.TubeBufferGeometry(path3, 1000, .5, 50, false);
-  material3 = new THREE.MeshPhysicalMaterial({ color: "rgb(256,0,0)" });
+  material3 = new THREE.MeshPhysicalMaterial({ color: "rgb(250,250,250)", reflectivity: 1 });
   mesh3 = new THREE.Mesh(geometry3, material3);
   scene.add(mesh3);
 
@@ -106,9 +140,9 @@ function init() {
   CustomSinCurve2.prototype.constructor = CustomSinCurve2;
 
   CustomSinCurve2.prototype.getPoint = function (t) {
-    var tx = -(15 * Math.sin(Math.PI * t - Math.PI / 2));
-    var ty = 4 + Math.sin(2 * Math.PI * t * 7);
-    var tz = -6 + 5 * Math.cos(2 * Math.PI * t);
+    var tx = 30 * Math.sin(Math.PI * t);
+    var ty = Math.sin(2 * Math.PI * t * 7);
+    var tz = -10 - 15 * Math.cos(2 * Math.PI * t) - Math.sin(14 * Math.PI * t);
     return new THREE.Vector3(tx, ty, tz).multiplyScalar(this.scale);
   };
 
@@ -118,112 +152,61 @@ function init() {
   mesh4 = new THREE.Mesh(geometry4, material3);
   scene.add(mesh4);
 
-  function CustomSinCurve3(scale) {
-    THREE.Curve.call(this);
-    this.scale = (scale === undefined) ? 1 : scale;
-  }
-
-  CustomSinCurve3.prototype = Object.create(THREE.Curve.prototype);
-  CustomSinCurve3.prototype.constructor = CustomSinCurve3;
-
-  CustomSinCurve3.prototype.getPoint = function (t) {
-    var tx = 15 * Math.sin(Math.PI * t - Math.PI / 2)/* -((t)*10 * 3 + 1.5) */;
-    var ty = 8 + Math.sin(2 * Math.PI * t * 4);
-    var tz = -6 + 5 * Math.cos(2 * Math.PI * t);
-    return new THREE.Vector3(tx, ty, tz).multiplyScalar(this.scale);
-  };
-
-  path5 = new CustomSinCurve3(5);
-  geometry5 = new THREE.TubeBufferGeometry(path5, 1000, .5, 50, false);
-  material5 = new THREE.MeshPhysicalMaterial({ color: "rgb(80,245,20)" });
-  mesh5 = new THREE.Mesh(geometry5, material5);
-  scene.add(mesh5);
-
-  function CustomSinCurve6(scale) {
-    THREE.Curve.call(this);
-    this.scale = (scale === undefined) ? 1 : scale;
-  }
-  CustomSinCurve6.prototype = Object.create(THREE.Curve.prototype);
-  CustomSinCurve6.prototype.constructor = CustomSinCurve6;
-
-  CustomSinCurve6.prototype.getPoint = function (t) {
-    var tx = -(15 * Math.sin(Math.PI * t - Math.PI / 2));
-    var ty = 8 + Math.sin(2 * Math.PI * t * 4);
-    var tz = -6 + 5 * Math.cos(2 * Math.PI * t);
-    return new THREE.Vector3(tx, ty, tz).multiplyScalar(this.scale);
-  };
-
-  path6 = new CustomSinCurve6(5);
-  geometry6 = new THREE.TubeBufferGeometry(path6, 1000, .5, 50, false);
-
-  mesh6 = new THREE.Mesh(geometry6, material5);
-  scene.add(mesh6);
-
-  material6 = new THREE.MeshPhysicalMaterial({ color: "rgb(156,100,30)" });
-
-  function CustomSinCurve8(scale) {
-    THREE.Curve.call(this);
-    this.scale = (scale === undefined) ? 1 : scale;
-  }
-
-  CustomSinCurve8.prototype = Object.create(THREE.Curve.prototype);
-  CustomSinCurve8.prototype.constructor = CustomSinCurve8;
-
-  CustomSinCurve8.prototype.getPoint = function (t) {
-    var tx = -(15 * Math.sin(Math.PI * t - Math.PI / 2));
-    var ty = 0 + Math.sin(2 * Math.PI * t * 10);
-    var tz = -6 + 5 * Math.cos(2 * Math.PI * t);
-    return new THREE.Vector3(tx, ty, tz).multiplyScalar(this.scale);
-  };
-
-  path8 = new CustomSinCurve8(5);
-  geometry8 = new THREE.TubeBufferGeometry(path8, 1000, .5, 50, false);
-
-  mesh8 = new THREE.Mesh(geometry8, material6);
-  scene.add(mesh8);
-
-  function CustomSinCurve7(scale) {
-    THREE.Curve.call(this);
-    this.scale = (scale === undefined) ? 1 : scale;
-  }
-  CustomSinCurve7.prototype = Object.create(THREE.Curve.prototype);
-  CustomSinCurve7.prototype.constructor = CustomSinCurve7;
-
-  CustomSinCurve7.prototype.getPoint = function (t) {
-    var tx = (15 * Math.sin(Math.PI * t - Math.PI / 2));
-    var ty = 0 + Math.sin(2 * Math.PI * t * 10);
-    var tz = -6 + 5 * Math.cos(2 * Math.PI * t);
-    return new THREE.Vector3(tx, ty, tz).multiplyScalar(this.scale);
-  };
-
-  path7 = new CustomSinCurve7(5);
-  geometry7 = new THREE.TubeBufferGeometry(path7, 1000, .5, 50, false);
-
-  mesh7 = new THREE.Mesh(geometry7, material6);
-  scene.add(mesh7);
-
-
-  stlloader.load('./stl/spin.stl', function (geometry9) {
-    var material9 = new THREE.MeshPhysicalMaterial({ reflectivity: 0.1, clearcoatRoughness: 0.1, color: "rgb(255,215,0)" });
+  plyloader.load('./stl/spin2.ply', function (geometry9) {
+    var material9 = new THREE.MeshStandardMaterial({ vertexColors: THREE.VertexColors, reflectivity: 0.1, clearcoatRoughness: 0.1 });
     var mesh9 = new THREE.Mesh(geometry9, material9);
-    mesh9.position.set(28, 15, -30);
+    mesh9.position.set(0, -25, -60);
     mesh9.rotation.set(0, 0, 0);
-    mesh9.scale.set(6.5, 6.5, 6.5);
+    mesh9.scale.set(9.5, 9.5, 9.5);
     mesh9.rotateSpeed = 0.1;
     scene.add(mesh9);
   });
+  plyloader.load('./stl/test2.ply', function (geometry10) {
+    var material10 = new THREE.MeshStandardMaterial({ vertexColors: THREE.VertexColors, reflectivity: 0.1, clearcoatRoughness: 0.1 });
+    var mesh10 = new THREE.Mesh(geometry10, material10);
+    mesh10.position.set(0, -20, -5);
+    mesh10.rotation.set(0, 0, 0);
+    mesh10.scale.set(.03, .03, .03);
+    mesh10.rotateSpeed = 0.1;
+    scene.add(mesh10);
+  });
+  plyloader.load('./stl/ins.ply', function (geometry11) {
+    var material11 = new THREE.MeshPhysicalMaterial({ opacity: 0.9, color: "rgb(210,45,40)", reflectivity: 1, clearcoatRoughness: 0.1 });
+    var mesh11 = new THREE.Mesh(geometry11, material11);
+    mesh11.position.set(70, -2, -60);
+    mesh11.rotation.set(.5, .5, 0);
+    mesh11.scale.set(1, 1, 1);
+    mesh11.rotateSpeed = 0.1;
+    scene.add(mesh11);
+  });
+  plyloader.load('./stl/plane.ply', function (geometry16) {
+    var texture = new THREE.TextureLoader().load('./images/planesurface2.png');
+    texture.anisotropy = renderer.capabilities.getMaxAnisotropy();
+    material16 = new THREE.MeshPhysicalMaterial({ map: texture, reflectivity: 0.9, clearcoatRoughness: 0. });
+    var mesh16 = new THREE.Mesh(geometry16, material16);
+    mesh16.position.set(-5, -50, 25);
+    mesh16.rotation.set(Math.PI / 2, 0, - Math.PI / 2);
+    mesh16.scale.set(15, 15, 15);
+    mesh16.rotateSpeed = 0.1;
+    scene.add(mesh16);
+  });
 
-
-
-
-
+  plyloader.load('./stl/words2.ply', function (geometry17) {
+    material17 = new THREE.MeshPhysicalMaterial({ vertexColors: THREE.VertexColors, opacity: 1, reflectivity: 1, clearcoatRoughness: 0.1 });
+    var mesh17 = new THREE.Mesh(geometry17, material17);
+    geo17copy = geometry17;
+    mesh17.position.set(-90, -80, 45);
+    mesh17.scale.set(200, 200, 200);
+    mesh17.rotation.set(-.6, 0, 0);
+    scene.add(mesh17);
+  });
   // Texture Loader
   let textureLoader = new THREE.TextureLoader();
 
   // Planet Proto
   let planetProto = {
     sphere: function (size) {
-      let sphere = new THREE.SphereBufferGeometry(size, 32, 32);
+      let sphere = new THREE.SphereBufferGeometry(size, 20, 20);
 
       return sphere;
     },
@@ -353,14 +336,14 @@ function init() {
     surface: {
       size: 15,
       material: {
-        bumpScale: .01,
+        bumpScale: .0001,
         specular: new THREE.Color('white'),
-        shininess: 200
+        shininess: 20
       },
       textures: {
-        map: './images/earthmap1k.jpg',
-        bumpMap: './images/earthbump1k.jpg',
-        specularMap: './images/earthspec1k.jpg'
+        map: image1,
+        bumpMap: image4,
+        specularMap: image2
       }
     },
     atmosphere: {
@@ -369,8 +352,8 @@ function init() {
         opacity: 0.9
       },
       textures: {
-        map: './images/earthcloudmap.jpg',
-        alphaMap: './images/earthcloudmaptrans.jpg'
+        map: image5,
+        alphaMap: image3
       },
       glow: {
         size: 0.1,
@@ -380,9 +363,11 @@ function init() {
       }
     },
   });
-
+  earth.position.set(70, -12, 5);
+  geo1copy = earth;
   scene.add(earth);
   animate();
+
 }
 
 function animate() {
@@ -391,30 +376,23 @@ function animate() {
   t += 1 / 60;
   geometry3.needsUpdate = true;
   geometry3.setDrawRange.needsUpdate = true;
-  geometry3.setDrawRange(0, 50000 * t);
-  geometry4.needsUpdate = true;
+  geometry3.setDrawRange(0, 50000 * t); geometry4.needsUpdate = true;
   geometry4.setDrawRange.needsUpdate = true;
   geometry4.setDrawRange(0, 50000 * t);
-  geometry5.needsUpdate = true;
-  geometry5.setDrawRange.needsUpdate = true;
-  geometry5.setDrawRange(0, 50000 * t);
-  geometry6.needsUpdate = true;
-  geometry6.setDrawRange.needsUpdate = true;
-  geometry6.setDrawRange(0, 50000 * t);
-  geometry7.needsUpdate = true;
-  geometry7.setDrawRange.needsUpdate = true;
-  geometry7.setDrawRange(0, 50000 * t);
-  geometry8.needsUpdate = true;
-  geometry8.setDrawRange.needsUpdate = true;
-  geometry8.setDrawRange(0, 50000 * t);
   renderer.render(scene, camera);
-  if (t < 6) {
-    camera.position.x -= Math.cos(t);
-    camera.position.y -= t * t * Math.cos(t) / 100;
-    camera.position.z -= t * Math.sin(t) / 10;
+  geo1copy.needsUpdate = true;
+  geo1copy.rotation.y += 0.002;
+  if (t < 10) {
+    controls.enabled = false;
   }
-  else if (t < 7.5) {
-    camera.position.x += Math.cos(t) / 2;
+  else if (t < 120) {
+    controls.enabled = true;
   }
-  /*   stats.update(); */
+  else {
+    controls.enabled = false;
+    camera.position.x = -30;
+    camera.position.y = 60;
+    camera.position.z = 80;
+    camera.updateProjectionMatrix();
+  }
 }
