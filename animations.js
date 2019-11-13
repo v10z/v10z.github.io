@@ -6,7 +6,7 @@ var  image2=require('./images/earthspec1k.jpg');
 var  image3=require('./images/earthcloudmaptrans.jpg');
 var  image4=require('./images/earthbump1k.jpg',);
 var  image5=require('./images/earthcloudmap.jpg');
-var json=require('./examples/fonts/optimer_regular.typeface.json')
+import * as json from './examples/fonts/optimer_regular.typeface.json';
 
 THREE.Cache.enabled = true;
 var scene, renderer, camera, controls, light, textMesh, textGeo, geometry, material, t, stats, scale, path3, geometry3,
