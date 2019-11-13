@@ -1,10 +1,10 @@
-/* import * as THREE from "./node_modules/three/build/three.module.js";
+import * as THREE from "./node_modules/three/build/three.module.js";
 import { OrbitControls } from './node_modules/three/examples/jsm/controls/OrbitControls.js';
-import { STLLoader } from './node_modules/three/examples/jsm/loaders/STLLoader.js';*/
+import { STLLoader } from './node_modules/three/examples/jsm/loaders/STLLoader.js';
 THREE.Cache.enabled = true;
 var scene, renderer, camera, controls, light, textMesh, textGeo, geometry, material, t, stats, scale, path3, geometry3,
   material3, path4, geometry4, mesh3, mesh4, path5, path6, mesh5, mesh6, geometry5, geometry6, material5, path7, path8, mesh8, mesh7, geometry7, geometry8, material6, material9, mesh9;
-t = 0; var loader = new THREE.FontLoader(); scale = 0; var lod = new THREE.LOD(); lod.update = false; var stlloader = new THREE.STLLoader();
+t = 0; var loader = new THREE.FontLoader(); scale = 0; var lod = new THREE.LOD(); lod.update = false; var stlloader = new STLLoader();
 
 init();
 
@@ -35,7 +35,7 @@ function init() {
     bevelSize = .15,
     bevelEnabled = true; // normal bold
 
-  loader.load('https://github.com/v10z/v10z.github.io/tree/master/node_modules/three/examples/fonts/optimer_regular.typeface.json', function (font) {
+  loader.load('./node_modules/three/examples/fonts/optimer_regular.typeface.json', function (font) {
     textGeo = new THREE.TextGeometry(text, {
       font: font,
       size: size,
@@ -67,7 +67,7 @@ function init() {
           camera.lookAt(new THREE.Vector3(-1, 1, 0)); */
 
   camera.position.set(-25, 25, 50);
-  controls = new THREE.OrbitControls(camera, renderer.domElement);
+  controls = new OrbitControls(camera, renderer.domElement);
   controls.enableZoom = false;
 
   controls.rotateSpeed = 1;
@@ -204,8 +204,8 @@ function init() {
   scene.add(mesh7);
 
 
-  stlloader.load('https://github.com/v10z/v10z.github.io/tree/master/stl/spin.stl', function (geometry9) {
-    var material9 = new THREE.MeshPhysicalMaterial({ reflectivity: 0.1, clearcoatRoughness: 0.1, color: "rgb(255,215,0)" });
+  stlloader.load('./stl/spin.stl', function (geometry9) {
+    var material9 = new THREE.MeshPhysicalMaterial({ reflectivity: 0.1, clearcoatRoughness: 0.1, color: "rgb(255,215,0)"});
     var mesh9 = new THREE.Mesh(geometry9, material9);
     mesh9.position.set(28, 15, -30);
     mesh9.rotation.set(0, 0, 0);
@@ -213,6 +213,10 @@ function init() {
     mesh9.rotateSpeed = 0.1;
     scene.add(mesh9);
   });
+
+
+
+
 
   // Texture Loader
   let textureLoader = new THREE.TextureLoader();
@@ -355,9 +359,9 @@ function init() {
         shininess: 200
       },
       textures: {
-        map: 'https://github.com/v10z/v10z.github.io/tree/master/images/earthmap1k.jpg',
-        bumpMap: 'https://github.com/v10z/v10z.github.io/tree/master/images/earthbump1k.jpg',
-        specularMap: 'https://github.com/v10z/v10z.github.io/tree/master/images/earthspec1k.jpg'
+        map: './images/earthmap1k.jpg',
+        bumpMap: './images/earthbump1k.jpg',
+        specularMap: './images/earthspec1k.jpg'
       }
     },
     atmosphere: {
@@ -366,8 +370,8 @@ function init() {
         opacity: 0.9
       },
       textures: {
-        map: 'https://github.com/v10z/v10z.github.io/tree/master/images/earthcloudmap.jpg',
-        alphaMap: 'https://github.com/v10z/v10z.github.io/tree/master/images/earthcloudmaptrans.jpg'
+        map: './images/earthcloudmap.jpg',
+        alphaMap: './images/earthcloudmaptrans.jpg'
       },
       glow: {
         size: 0.1,

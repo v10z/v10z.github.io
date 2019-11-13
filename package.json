@@ -1,0 +1,32 @@
+{
+  "name": "v10z.github.io",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.html",
+  "directories": {
+    "example": "examples"
+  },
+  "dependencies": {
+    "babel-loader": "^8.0.6",
+    "three": "^0.110.0",
+    "webpack": "^4.41.2"
+  },
+  "devDependencies": {
+    "webpack-cli": "^3.3.10"
+  },
+  "scripts": {
+    "babel": "babel --presets es2015 ./animation.js -o ./main.bundle.js",
+    "start": "http-server",
+    "webpack": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/v10z/v10z.github.io.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/v10z/v10z.github.io/issues"
+  },
+  "homepage": "https://github.com/v10z/v10z.github.io#readme"
+}
