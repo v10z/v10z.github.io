@@ -26,6 +26,15 @@ module.exports = {
               outputPath: 'images',
             },
           },
+          {
+            type: 'javascript/auto',
+            test: /\.(json)$/i,
+            loader: 'file-loader',
+            exclude: /(node_modules)/,
+            options: {
+              name: "[path][name].[ext]",
+            },
+          },
         ]
       },
       
