@@ -49,7 +49,7 @@ function init() {
       curveSegments: curveSegments,
       bevelThickness: bevelThickness,
       bevelSize: bevelSize,
-      bevelEnabled: bevelEnableds
+      bevelEnabled: bevelEnabled
     });
     //textGeo.rotateX = Math.PI/2;
     const pointLight = new THREE.PointLight("rgb(256,256,256)", 1.5);
