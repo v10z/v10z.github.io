@@ -42,5 +42,9 @@ module.exports = {
         colors: true
     },
     devtool: 'source-map',
-    watch: true
+    devServer: {
+      contentBase: path.join(__dirname),
+      compress: true,
+      port: 9000
+    }
 };
