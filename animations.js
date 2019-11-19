@@ -27,7 +27,7 @@ function init() {
   //and this sets the canvas' size.
   renderer.autoClear = false;
   renderer.setClearColor(0x000000, 0.0);
-  renderer.setSize(window.innerWidth, 700);
+  renderer.setSize(window.innerWidth, window.innerHeight);
 
   document.body.appendChild(renderer.domElement);
 
@@ -40,7 +40,7 @@ function init() {
   const pointLight = new THREE.PointLight("rgb(256,256,256)", 0.5);
   pointLight.position.set(100, 100, 100); scene.add(pointLight);
 
-  const ambiLight = new THREE.AmbientLight("rgb(256,256,256)", 0.75); scene.add(ambiLight);
+  const ambiLight = new THREE.AmbientLight("rgb(256,256,256)", 1.); scene.add(ambiLight);
 
   camera = new THREE.PerspectiveCamera(
     70,
@@ -60,7 +60,7 @@ function init() {
   controls.enableDamping = true;
   controls.dampingFactor = .05;
   window.addEventListener('resize', function () {
-    camera.aspect = window.innerWidth / 800;
+    camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix(); renderer.setSize(window.innerWidth, 800);
   }, false);
   var glowMaterial1 = new THREE.ShaderMaterial({
@@ -122,7 +122,7 @@ function init() {
   CustomSinCurve.prototype.getPoint = function (t) {
     var tx = 30 * Math.sin(Math.PI * t);
     var ty = Math.sin(2 * Math.PI * t * 7);
-    var tz = -10 - 15 * Math.cos(2 * Math.PI * t) + Math.sin(14 * Math.PI * t);
+    var tz = -18 + Math.sin(14 * Math.PI * t);
     return new THREE.Vector3(tx, ty, tz).multiplyScalar(this.scale);
   };
 
@@ -131,6 +131,8 @@ function init() {
   material3 = new THREE.MeshPhysicalMaterial({ color: "rgb(250,250,250)", reflectivity: 1 });
   mesh3 = new THREE.Mesh(geometry3, material3);
   scene.add(mesh3);
+  geometry3.setDrawRange.needsUpdate = true;
+  geometry3.setDrawRange(0, 0);
 
   function CustomSinCurve2(scale) {
     THREE.Curve.call(this);
@@ -142,7 +144,7 @@ function init() {
   CustomSinCurve2.prototype.getPoint = function (t) {
     var tx = 30 * Math.sin(Math.PI * t);
     var ty = Math.sin(2 * Math.PI * t * 7);
-    var tz = -10 - 15 * Math.cos(2 * Math.PI * t) - Math.sin(14 * Math.PI * t);
+    var tz = -18 - Math.sin(14 * Math.PI * t);
     return new THREE.Vector3(tx, ty, tz).multiplyScalar(this.scale);
   };
 
@@ -151,6 +153,8 @@ function init() {
 
   mesh4 = new THREE.Mesh(geometry4, material3);
   scene.add(mesh4);
+  geometry4.setDrawRange.needsUpdate = true;
+  geometry4.setDrawRange(0, 0);
 
   plyloader.load('./stl/spin2.ply', function (geometry9) {
     var material9 = new THREE.MeshStandardMaterial({ vertexColors: THREE.VertexColors, reflectivity: 0.1, clearcoatRoughness: 0.1 });
@@ -180,9 +184,9 @@ function init() {
     scene.add(mesh11);
   });
   plyloader.load('./stl/plane.ply', function (geometry16) {
-    var texture = new THREE.TextureLoader().load('./images/planesurface2.png');
+    var texture = new THREE.TextureLoader().load('./images/planesurface3smaller.png');
     texture.anisotropy = renderer.capabilities.getMaxAnisotropy();
-    material16 = new THREE.MeshPhysicalMaterial({ map: texture, reflectivity: 0.9, clearcoatRoughness: 0. });
+    material16 = new THREE.MeshPhysicalMaterial({ map: texture, reflectivity: 1, clearcoat: 1, clearcoatRoughness: 0.1 });
     var mesh16 = new THREE.Mesh(geometry16, material16);
     mesh16.position.set(-5, -50, 25);
     mesh16.rotation.set(Math.PI / 2, 0, - Math.PI / 2);
@@ -200,6 +204,10 @@ function init() {
     mesh17.rotation.set(-.6, 0, 0);
     scene.add(mesh17);
   });
+  var texture = new THREE.TextureLoader().load('./images/backgroundsmaller.png');
+  texture.anisotropy = renderer.capabilities.getMaxAnisotropy();
+  scene.background = texture;
+
   // Texture Loader
   let textureLoader = new THREE.TextureLoader();
 
@@ -374,14 +382,15 @@ function animate() {
   requestAnimationFrame(animate);
   controls.update();
   t += 1 / 60;
-  geometry3.needsUpdate = true;
-  geometry3.setDrawRange.needsUpdate = true;
-  geometry3.setDrawRange(0, 50000 * t); geometry4.needsUpdate = true;
-  geometry4.setDrawRange.needsUpdate = true;
-  geometry4.setDrawRange(0, 50000 * t);
-  renderer.render(scene, camera);
-  geo1copy.needsUpdate = true;
-  geo1copy.rotation.y += 0.002;
+  if (t > 4) {
+    geometry3.setDrawRange.needsUpdate = true;
+    geometry3.setDrawRange(0, 50000 * (t - 4));
+    geometry4.setDrawRange.needsUpdate = true;
+    geometry4.setDrawRange(0, 50000 * (t - 4));
+    geo1copy.needsUpdate = true;
+    geo1copy.rotation.y += 0.002;
+  }
+
   if (t < 10) {
     controls.enabled = false;
   }
@@ -395,4 +404,5 @@ function animate() {
     camera.position.z = 80;
     camera.updateProjectionMatrix();
   }
+  renderer.render(scene, camera);
 }
