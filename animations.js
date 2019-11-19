@@ -50,9 +50,9 @@ function init() {
   );
   camera.up = new THREE.Vector3(0, 1, 0);
   camera.lookAt(new THREE.Vector3(-10, 1, 0));
-  camera.position.x = -30;
-  camera.position.y = 60;
-  camera.position.z = 80;
+  camera.position.x = -50;
+  camera.position.y = 70;
+  camera.position.z = 100;
   controls = new OrbitControls(camera, renderer.domElement);
   controls.enableZoom = false;
 
