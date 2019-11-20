@@ -128,7 +128,7 @@ function init() {
 
   path3 = new CustomSinCurve(5);
   geometry3 = new THREE.TubeBufferGeometry(path3, 1000, .5, 50, false);
-  material3 = new THREE.MeshPhysicalMaterial({ color: "rgb(250,250,250)", reflectivity: 1 });
+  material3 = new THREE.MeshPhysicalMaterial({ color: "rgb(150,20,20)", reflectivity: 1 });
   mesh3 = new THREE.Mesh(geometry3, material3);
   scene.add(mesh3);
   geometry3.setDrawRange.needsUpdate = true;
@@ -175,7 +175,7 @@ function init() {
     scene.add(mesh10);
   });
   plyloader.load('./stl/ins.ply', function (geometry11) {
-    var material11 = new THREE.MeshPhysicalMaterial({ opacity: 0.9, color: "rgb(210,45,40)", reflectivity: 1, clearcoatRoughness: 0.1 });
+    var material11 = new THREE.MeshPhysicalMaterial({ opacity: 0.9, color: "rgb(120,0,170)", reflectivity: 1, clearcoatRoughness: 0.1 });
     var mesh11 = new THREE.Mesh(geometry11, material11);
     mesh11.position.set(70, -2, -60);
     mesh11.rotation.set(.5, .5, 0);
@@ -183,18 +183,21 @@ function init() {
     mesh11.rotateSpeed = 0.1;
     scene.add(mesh11);
   });
-  plyloader.load('./stl/plane.ply', function (geometry16) {
-    var texture = new THREE.TextureLoader().load('./images/planesurface3smaller.png');
-    texture.anisotropy = renderer.capabilities.getMaxAnisotropy();
-    material16 = new THREE.MeshPhysicalMaterial({ map: texture, reflectivity: 1, clearcoat: 1, clearcoatRoughness: 0.1 });
+  plyloader.load('./stl/planeinside.ply', function (geometry16) {
+    material16 = new THREE.MeshStandardMaterial({ color: "rgb(255,10,10)", opacity: 0.5, reflectivity: 1, clearcoatRoughness: 0.7 });
     var mesh16 = new THREE.Mesh(geometry16, material16);
-    mesh16.position.set(-5, -50, 25);
-    mesh16.rotation.set(Math.PI / 2, 0, - Math.PI / 2);
+    mesh16.position.set(-50, -30, -650);
+    mesh16.rotation.set(Math.PI / 2, 0, 0);
     mesh16.scale.set(15, 15, 15);
-    mesh16.rotateSpeed = 0.1;
+    scene.add(mesh16);
+  }); plyloader.load('./stl/planeinside2.ply', function (geometry16) {
+    material16 = new THREE.MeshStandardMaterial({ color: "rgb(5,255,120)", reflectivity: 1, clearcoatRoughness: 1 });
+    var mesh16 = new THREE.Mesh(geometry16, material16);
+    mesh16.position.set(-50, -30, -650);
+    mesh16.rotation.set(Math.PI / 2, 0, 0);
+    mesh16.scale.set(15, 15, 15);
     scene.add(mesh16);
   });
-
   plyloader.load('./stl/words2.ply', function (geometry17) {
     material17 = new THREE.MeshPhysicalMaterial({ vertexColors: THREE.VertexColors, opacity: 1, reflectivity: 1, clearcoatRoughness: 0.1 });
     var mesh17 = new THREE.Mesh(geometry17, material17);
