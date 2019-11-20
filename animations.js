@@ -184,7 +184,7 @@ function init() {
     scene.add(mesh11);
   });
   plyloader.load('./stl/planeinside.ply', function (geometry16) {
-    material16 = new THREE.MeshStandardMaterial({ color: "rgb(255,10,10)", opacity: 0.5, reflectivity: 1, clearcoatRoughness: 0.7 });
+    material16 = new THREE.MeshStandardMaterial({ color: "rgb(255,102,10)", reflectivity: 1, clearcoatRoughness: 0 });
     var mesh16 = new THREE.Mesh(geometry16, material16);
     mesh16.position.set(-50, -30, -650);
     mesh16.rotation.set(Math.PI / 2, 0, 0);
