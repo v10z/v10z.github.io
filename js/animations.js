@@ -168,7 +168,7 @@ function init() {
   plyloader.load('./stl/test2.ply', function (geometry10) {
     var material10 = new THREE.MeshStandardMaterial({ vertexColors: THREE.VertexColors, reflectivity: 0.1, clearcoatRoughness: 0.1 });
     var mesh10 = new THREE.Mesh(geometry10, material10);
-    mesh10.position.set(0, -20, -5);
+    mesh10.position.set(5, -20, -1);
     mesh10.rotation.set(0, 0, 0);
     mesh10.scale.set(.03, .03, .03);
     mesh10.rotateSpeed = 0.1;
@@ -374,7 +374,7 @@ function init() {
       }
     },
   });
-  earth.position.set(70, -12, 5);
+  earth.position.set(80, -12, 5);
   geo1copy = earth;
   scene.add(earth);
   animate();
