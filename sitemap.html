@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html class="no-js">
+
+  <link rel="stylesheet" href="css/page.css">
+  <link rel="stylesheet" href="css/frame.css">
+  <link rel="stylesheet" href="css/grid.css">
+  <link rel="stylesheet" href="css/typography.css">
+  <link rel="stylesheet" href="css/nav.css">
+  <link rel="stylesheet" href="css/icons.css">
+  <link rel="stylesheet" type="text/css" href="css/component.css" />
+  <style>
+    .link {
+      fill: none;
+      stroke: rgb(0, 40, 128);
+      stroke-width: 0.5px;
+    }
+
+    #licensing {
+      fill: green;
+    }
+
+    .link.licensing {
+      stroke: green;
+    }
+
+    .link.resolved {
+      stroke-dasharray: 0, 2 1;
+    }
+
+    circle {
+      fill: rgb(167, 8, 82);
+      stroke: rgb(221, 200, 200);
+      stroke-width: 3px;
+    }
+
+    text {
+      font: 15px serif;
+      pointer-events: all;
+      text-shadow: 0 1px 0 #fff, 1px 0 0 #fff, 0 -1px 0 #fff, -1px 0 0 #fff;
+    }
+
+  </style>
+
+  <head>
+    <meta charset="UTF-8" />
+    <title>visual site-map</title>
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <!--
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <script src="js/modernizr-custom.js"></script>
+    <script src="js/jquery-1.10.2.js"></script>
+    <script>
+      $(function () {
+        $("#menuSystem").load("menu.html");
+      });
+    </script>
+    <script src="//d3js.org/d3.v3.min.js"></script>
+  </head>
+
+  <body>
+    <div id="fixed-frame">
+      <div class="grid">
+        <div class="g10 i3">
+          <div id="menuSystem"></div>
+        </div>
+        <div class="g9 i4">
+          <p> &ensp; </p>
+          <h1>visual site-map</h1>
+          <p>The graphic presented below illustrates the various sections of this repository that have been filled thus
+            far. It has been created using the d3.js JavaScript library, which is a useful tool in creating interactive
+            2D graphics.</p>
+        </div>
+        <div class="g10 i3">
+          <div class="container">
+            <div id="graphic"></div>
+            <script src="js/sitemap.js"></script>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+
+</html>

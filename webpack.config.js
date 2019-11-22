@@ -2,7 +2,7 @@ var path = require('path');
 var webpack = require('webpack');
 
 module.exports = {
-  entry: './animations.js',
+  entry: './js/animations.js',
   output: {
     path: path.resolve(__dirname),
     filename: 'main.bundle.js'

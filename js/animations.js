@@ -1,15 +1,15 @@
-import * as THREE from "./node_modules/three/build/three.module.js";
-import { OrbitControls } from './node_modules/three/examples/jsm/controls/OrbitControls.js';
-import { PLYLoader } from './node_modules/three/examples/jsm/loaders/PLYLoader.js';
-import { GLTFLoader } from './node_modules/three/examples/jsm/loaders/GLTFLoader.js';
-import { TrackballControls } from './node_modules/three/examples/jsm/controls/TrackballControls.js';
-import { PDBLoader } from './node_modules/three/examples/jsm/loaders/PDBLoader.js';
-import { CSS2DRenderer, CSS2DObject } from './node_modules/three/examples/jsm/renderers/CSS2DRenderer.js';
-var image1 = require('./images/earthmap1k.jpg');
-var image2 = require('./images/earthspec1k.jpg');
-var image3 = require('./images/earthcloudmaptrans.jpg');
-var image4 = require('./images/earthbump1k.jpg');
-var image5 = require('./images/earthcloudmap.jpg');
+import * as THREE from "three/build/three.module";
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
+import { PLYLoader } from 'three/examples/jsm/loaders/PLYLoader';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
+import { TrackballControls } from 'three/examples/jsm/controls/TrackballControls';
+import { PDBLoader } from 'three/examples/jsm/loaders/PDBLoader';
+import { CSS2DRenderer, CSS2DObject } from 'three/examples/jsm/renderers/CSS2DRenderer';
+var image1 = require('./../images/earthmap1k.jpg');
+var image2 = require('./../images/earthspec1k.jpg');
+var image3 = require('./../images/earthcloudmaptrans.jpg');
+var image4 = require('./../images/earthbump1k.jpg');
+var image5 = require('./../images/earthcloudmap.jpg');
 
 THREE.Cache.enabled = true;
 var scene, renderer, camera, controls, light, textMesh, textGeo, geometry, material, t, stats, scale, path3, geometry3,

@@ -1,0 +1,77 @@
+<div class="container">
+  <button class="action action--open" aria-label="Open Menu"><span class="icon icon--menu"> </span></button>
+  <nav id="ml-menu" class="menu">
+    <button class="action action--close" aria-label="Close Menu"><span class="icon icon--cross">
+      </span></button>
+    <div class="menu__wrap">
+      <ul data-menu="main" class="menu__level" tabindex="-1" role="menu" aria-label="home">
+        <li class="menu__item" role="menuitem"><a class="menu__link" href="./index.html"
+            onclick="window.location.replace('./index.html')">home</a></li>
+        <li class=" menu__item" role="menuitem"><a class="menu__link" data-submenu="submenu-2" aria-owns="submenu-2"
+            href="#">travel logs</a></li>
+        <li class="menu__item" role="menuitem"><a class="menu__link" data-submenu="submenu-3" aria-owns="submenu-3"
+            href="#">maths &amp; science</a></li>
+        <li class="menu__item" role="menuitem"><a class="menu__link" data-submenu="submenu-4" aria-owns="submenu-4"
+            href="#">literature</a></li>
+        <li class="menu__item" role="menuitem"><a class="menu__link" href="./sitemap.html"
+            onclick="window.location.replace('./sitemap.html')">visual site-map</a></li>
+        <li class="menu__item" role="menuitem"><a class="menu__link" data-submenu="submenu-7" aria-owns="submenu-7"
+            href="#">photography</a></li>
+        <!--         <li class="menu__item" role="menuitem"><a class="menu__link" href="./resume.html"
+            onclick="window.location.replace('./resume.html')"> r&eacute;sum&eacute; / cv</a></li> -->
+      </ul>
+      <!-- Submenu 1 -->
+      <ul data-menu="submenu-7" id="submenu-7" class="menu__level" tabindex="-1" role="menu" aria-label="photography">
+        <li class="menu__item" role="menuitem"><a class="menu__link" href="#">introduction</a></li>
+        <li class="menu__item" role="menuitem"><a class="menu__link" href="#">tips &amp; tricks </a></li>
+        <li class="menu__item" role="menuitem"><a class="menu__link" data-submenu="submenu-1-1" aria-owns="submenu-1-1"
+            href="#">gallery</a></li>
+      </ul>
+      <!-- Submenu 1-1 -->
+      <ul data-menu="submenu-1-1" id="submenu-1-1" class="menu__level" tabindex="-1" role="menu" aria-label="gallery">
+        <li class="menu__item" role="link"><a class="menu__link" href="#">miscellaneous</a>
+        </li>
+      </ul>
+      <!-- Submenu 2 -->
+      <ul data-menu="submenu-2" id="submenu-2" class="menu__level" tabindex="-1" role="menu" aria-label="travel logs">
+        <li class="menu__item" role="menuitem"><a class="menu__link" href="#">summary</a></li>
+        <li class="menu__item" role="menuitem"><a class="menu__link" data-submenu="submenu-2-1" aria-owns="submenu-2-1"
+            href="#">by city</a></li>
+      </ul>
+      <!-- Submenu 2-1 -->
+      <ul data-menu="submenu-2-1" id="submenu-2-1" class="menu__level" tabindex="-1" role="menu" aria-label="by city">
+        <li class="menu__item" role="menuitem"><a class="menu__link" href="#">new york</a></li>
+      </ul>
+      <!-- Submenu 3 -->
+      <ul data-menu="submenu-3" id="submenu-3" class="menu__level" tabindex="-1" role="menu"
+        aria-label="math &amp; science">
+        <li class="menu__item" role="menuitem"><a class="menu__link" href="#">mathematics</a></li>
+        <li class="menu__item" role="menuitem"><a class="menu__link" href="#">computer programming</a></li>
+        <li class="menu__item" role="menuitem"><a class="menu__link" href="#">science</a></li>
+        <li class="menu__item" role="menuitem"><a class="menu__link" href="#">research</a></li>
+        <li class="menu__item" role="menuitem"><a class="menu__link" href="#">tinkerings</a></li>
+        <li class="menu__item" role="menuitem"><a class="menu__link" data-submenu="submenu-3-1" aria-owns="submenu-3-1"
+            href="#">codes</a></li>
+      </ul>
+      <!-- Submenu 3-1 -->
+      <ul data-menu="submenu-3-1" id="submenu-3-1" class="menu__level" tabindex="-1" role="menu" aria-label="codes">
+        <li class="menu__item" role="menuitem"><a class="menu__link" href="#">fractal generator</a></li>
+      </ul>
+      <!-- Submenu 4 -->
+      <ul data-menu="submenu-4" id="submenu-4" class="menu__level" tabindex="-1" role="menu" aria-label="literature">
+        <li class="menu__item" role="menuitem"><a class="menu__link" href="#">fiction</a></li>
+        <li class="menu__item" role="menuitem"><a class="menu__link" data-submenu="submenu-4-1" aria-owns="submenu-4-1"
+            href="#">non-fiction</a></li>
+      </ul>
+      <!-- Submenu 4-1 -->
+      <ul data-menu="submenu-4-1" id="submenu-4-1" class="menu__level" tabindex="-1" role="menu"
+        aria-label="non-fiction">
+        <li class="menu__item" role="menuitem"><a class="menu__link" href="#">philosophy</a></li>
+        <li class="menu__item" role="menuitem"><a class="menu__link" href="#">science</a></li>
+      </ul>
+    </div>
+  </nav>
+</div>
+<script src="./js/classie.js"></script>
+<script src="./js/main2.js"></script>
+<script src="./js/anotherscript.js"></script>
