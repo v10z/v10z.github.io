@@ -19,7 +19,7 @@ var pdbloader = new PDBLoader(); var geo17copy, geo1copy, geo2copy, geo3copy, ge
 init();
 
 function init() {
-  renderer = new THREE.WebGLRenderer({ alpha: true });
+  renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
 
   //this is to get the correct pixel detail on portable devices
   renderer.setPixelRatio(window.devicePixelRatio);
