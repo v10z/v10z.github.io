@@ -376,7 +376,7 @@ function init() {
   });
   earth.position.set(80, -12, 5);
   geo1copy = earth;
-  scene.add(earth);
+  //scene.add(earth);
   animate();
 
 }
